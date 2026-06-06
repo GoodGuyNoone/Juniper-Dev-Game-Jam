@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cf1w2mtb8ntwd"]
+
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://scenes/menus/options_menu/input/base/input_options_menu.tscn" id="1_i27v5"]
+
+[node name="Controls" unique_id=1211114974 instance=ExtResource("1_i27v5")]

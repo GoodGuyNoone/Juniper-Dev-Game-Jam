@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cv35cxoqfhn2h"]
+
+[ext_resource type="Script" path="res://scripts/menus/paginated_tab_container.gd" id="1_tabs"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_input"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="3_audio"]
+[ext_resource type="PackedScene" path="res://scenes/menus/options_menu/video/video_options_menu.tscn" id="4_video"]
+
+[node name="MasterOptionsMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("1_tabs")
+
+[node name="Controls" parent="." instance=ExtResource("2_input")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Audio" parent="." instance=ExtResource("3_audio")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Video" parent="." instance=ExtResource("4_video")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

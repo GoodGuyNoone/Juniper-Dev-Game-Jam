@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://jljc733whdom"]
+
+[ext_resource type="Script" uid="uid://cc2wtqasev7le" path="res://scripts/labels/credits_label.gd" id="1_yhcaj"]
+
+[node name="CreditsLabel" type="RichTextLabel" unique_id=1997651144]
+custom_minimum_size = Vector2(1280, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+bbcode_enabled = true
+text = "[font_size=48]Credits[/font_size]
+
+Add your game credits here.
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("1_yhcaj")
+attribution_file_path = ""
+auto_update = false
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+h5_font_size = 20
+h6_font_size = 16
+max_image_width = 80

@@ -21,6 +21,12 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 
 var last_input_readable_name
 
+func _open_window(window : Node) -> void:
+	if window.has_method("open"):
+		window.call("open")
+	elif window is CanvasItem:
+		(window as CanvasItem).show()
+
 func _ready() -> void:
 	remapping_mode = remapping_mode
 
@@ -37,7 +43,7 @@ func _remove_action_event(item : TreeItem) -> void:
 	%InputActionsTree.remove_action_event(item)
 
 func _on_reset_button_pressed() -> void:
-	$ResetConfirmation.show()
+	_open_window($ResetConfirmation)
 
 func _on_key_deletion_confirmation_confirmed() -> void:
 	var editing_item = %InputActionsTree.editing_item
@@ -51,7 +57,7 @@ func _open_key_assignment_window(action_name : String, readable_input_name : Str
 	$KeyAssignmentWindow.title = tr("Assign Key for {action}").format({action = action_name})
 	$KeyAssignmentWindow.text = readable_input_name
 	$KeyAssignmentWindow.confirm_button.disabled = true
-	$KeyAssignmentWindow.show()
+	_open_window($KeyAssignmentWindow)
 
 func _on_input_actions_tree_add_button_clicked(action_name) -> void:
 	_open_key_assignment_window(action_name)
@@ -59,15 +65,15 @@ func _on_input_actions_tree_add_button_clicked(action_name) -> void:
 func _on_input_actions_tree_remove_button_clicked(action_name, input_name) -> void:
 	$KeyDeletionConfirmation.title = tr("Remove Key for {action}").format({action = action_name})
 	$KeyDeletionConfirmation.text = tr(KEY_DELETION_TEXT).format({key = input_name, action = action_name})
-	$KeyDeletionConfirmation.show()
+	_open_window($KeyDeletionConfirmation)
 
 func _popup_already_assigned(action_name, input_name) -> void:
 	$AlreadyAssignedMessage.text = tr(ALREADY_ASSIGNED_TEXT).format({key = input_name, action = action_name})
-	$AlreadyAssignedMessage.show()
+	_open_window($AlreadyAssignedMessage)
 
 func _popup_minimum_reached(action_name : String) -> void:
 	$OneInputMinimumMessage.text = ONE_INPUT_MINIMUM_TEXT % action_name
-	$OneInputMinimumMessage.show()
+	_open_window($OneInputMinimumMessage)
 
 func _on_input_actions_tree_already_assigned(action_name, input_name) -> void:
 	_popup_already_assigned.call_deferred(action_name, input_name)

@@ -71,8 +71,8 @@ func _unhandled_input(event : InputEvent) -> void:
 func _on_close_button_pressed() -> void:
 	close()
 
-func show() -> void:
-	super.show()
+func open() -> void:
+	show()
 	opened.emit()
 
 func _exit_tree():

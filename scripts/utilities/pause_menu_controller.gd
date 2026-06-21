@@ -7,12 +7,18 @@ extends Node
 
 var pause_menu : Node
 
+func _open_pause_menu() -> void:
+	if pause_menu.has_method("open"):
+		pause_menu.call("open")
+	else:
+		pause_menu.show()
+
 func pause() -> void:
 	if pause_menu.visible: return
 	if not focused_viewport:
 		focused_viewport = get_viewport()
 	var _initial_focus_control = focused_viewport.gui_get_focus_owner()
-	pause_menu.show()
+	_open_pause_menu()
 	if pause_menu is CanvasLayer:
 		await pause_menu.visibility_changed
 	else:

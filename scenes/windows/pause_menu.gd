@@ -48,9 +48,15 @@ func _load_scene(scene_path: String) -> void:
 	_scene_tree.paused = false
 	SceneLoader.load_scene(scene_path)
 
+func _open_window(window : Control) -> void:
+	if window.has_method("open"):
+		window.call("open")
+	else:
+		window.show()
+
 func _show_window(window : Control) -> void:
 	_disable_focus.call_deferred()
-	window.show()
+	_open_window(window)
 	open_window = window
 	await window.hidden
 	open_window = null
@@ -72,8 +78,8 @@ func _handle_cancel_input() -> void:
 	else:
 		super._handle_cancel_input()
 
-func show() -> void:
-	super.show()
+func open() -> void:
+	super.open()
 	if Input.is_action_pressed("ui_cancel"):
 		_ignore_first_cancel = true
 

@@ -43,12 +43,18 @@ func load_game_scene() -> void:
 	else:
 		SceneLoader.load_scene(get_game_scene_path())
 
+func _open_window(window : Node) -> void:
+	if window.has_method("open"):
+		window.call("open")
+	elif window is CanvasItem:
+		(window as CanvasItem).show()
+
 func new_game() -> void:
 	load_game_scene()
 
 func try_exit_game() -> void:
 	if confirm_exit and (not exit_confirmation.visible):
-		exit_confirmation.show()
+		_open_window(exit_confirmation)
 	else:
 		exit_game()
 

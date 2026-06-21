@@ -7,8 +7,7 @@ albedo_color = Color(0, 1, 1, 1)
 
 [node name="Buoy" type="Node3D" unique_id=1926507034]
 script = ExtResource("1_506yy")
-bob_height = 0.05
-bob_speed = 1.5
+bob_speed = 5.0
 
 [node name="Visuals" type="Node3D" parent="." unique_id=372540036]
 unique_name_in_owner = true

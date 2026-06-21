@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://buqv6vkxbadfh" path="res://scenes/gameplay/world/pool.tscn" id="4_o347i"]
 [ext_resource type="Script" uid="uid://cxk8077hy27md" path="res://scripts/gameplay/controllers/ray_cast_mouse_controller.gd" id="6_wedpv"]
 [ext_resource type="PackedScene" uid="uid://qrhryg6uihmx" path="res://scenes/gameplay/world/buoy.tscn" id="7_wedpv"]
-[ext_resource type="Script" uid="uid://ypig5c3ypcht" path="res://scripts/gameplay/world/fish_coordinator.gd" id="8_oxnsv"]
+[ext_resource type="Script" uid="uid://ypig5c3ypcht" path="res://scripts/gameplay/controllers/fish_coordinator.gd" id="8_oxnsv"]
+[ext_resource type="Script" uid="uid://duo2mgjedbqhj" path="res://scripts/gameplay/controllers/game_controller.gd" id="10_lnrhe"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -63,3 +64,7 @@ fish_coordinator = NodePath("../FishCoordinator")
 script = ExtResource("8_oxnsv")
 fish_scene = ExtResource("4_fhy3a")
 fish_container = NodePath("../../World/FishContainer")
+
+[node name="GameController" type="Node" parent="Controllers" unique_id=401909138 node_paths=PackedStringArray("fish_coordinator")]
+script = ExtResource("10_lnrhe")
+fish_coordinator = NodePath("../FishCoordinator")

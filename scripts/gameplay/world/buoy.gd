@@ -8,7 +8,7 @@ signal retrieved(buoy: Buoy)
 @export var bob_speed: float = 2
 
 var is_casted: bool = false
-var _base_y := 0.0
+var _base_visuals_y := 0.0
 var _time_passed := 0.0
 
 @onready var visuals: Node3D = $Visuals
@@ -19,17 +19,16 @@ func _process(delta: float) -> void:
 		return
 	
 	_time_passed += delta
-	visuals.position.y = _base_y + sin(_time_passed * bob_speed) * bob_height
+	visuals.position.y = _base_visuals_y + sin(_time_passed * bob_speed) * bob_height
 
 
 func land_at(world_position: Vector3) -> void:
 	global_position = world_position
-	_base_y = global_position.y
+	_base_visuals_y = visuals.position.y
 	is_casted = true
 	visible = true
 	landed.emit(self)
 	_time_passed = 0.0
-	
 
 
 func retrieve() -> void:

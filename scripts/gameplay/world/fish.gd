@@ -99,12 +99,15 @@ func _process_interested(delta: float) -> void:
 		release()
 		return
 
+	var to_buoy := target_buoy.global_position - global_position
+	to_buoy.y = 0
+
 	target_position = target_buoy.global_position
+	target_position.y = global_position.y
 	_swim_toward(target_position, chase_speed, delta)
 
-	if global_position.distance_to(target_position) <= bite_distance:
-		state = State.BITE
-		bitten.emit(self)
+	if to_buoy.length() <= bite_distance:
+		_bite()
 
 
 func _swim_toward(target: Vector3, speed: float, delta: float) -> void:
@@ -136,3 +139,8 @@ func _apply_visual_scale() -> void:
 		return
 
 	visuals.scale = Vector3.ONE * visual_scale
+
+
+func _bite() -> void:
+	state = State.BITE
+	bitten.emit(self)

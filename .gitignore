@@ -24,3 +24,6 @@ Exports/
 .DS_Store
 import
 *.md
+
+# TEMP
+docs/

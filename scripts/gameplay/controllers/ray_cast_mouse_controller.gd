@@ -1,4 +1,4 @@
-class_name RayCastMuseController
+class_name RayCastMouseController
 extends Node
 
 @export var pool: Pool
@@ -8,6 +8,8 @@ extends Node
 @export var buoy_container: Node3D
 
 var current_water_position: Variant = null
+var active_buoy: Buoy = null
+
 
 func _process(delta: float) -> void:
 	var mouse_position := get_viewport().get_mouse_position()
@@ -22,15 +24,36 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			_try_cast()
+	if event is not InputEventMouseButton:
+		return
+	if not event.is_pressed():
+		return
+	
+	if event.button_index == MOUSE_BUTTON_LEFT:
+		_try_cast()
+
+	if event.button_index == MOUSE_BUTTON_RIGHT:
+		_retrieve_buoy()
 
 
 func _try_cast() -> void:
 	if current_water_position == null:
 		return
 	
-	var buoy := buoy_scene.instantiate()
+	_retrieve_buoy()
+
+	var buoy := buoy_scene.instantiate() as Buoy
 	buoy_container.add_child(buoy)
-	buoy.global_position = current_water_position
+	buoy.land_at(current_water_position)
+
+	active_buoy = buoy
+
+
+func _retrieve_buoy() -> void:
+	if active_buoy == null:
+		return
+
+	if is_instance_valid(active_buoy):
+		active_buoy.retrieve()
+	
+	active_buoy = null

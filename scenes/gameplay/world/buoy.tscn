@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://qrhryg6uihmx"]
 
+[ext_resource type="Script" uid="uid://ba0w2u7d3pjn5" path="res://scripts/gameplay/world/buoy.gd" id="1_506yy"]
+
 [node name="Buoy" type="Node3D" unique_id=1926507034]
+script = ExtResource("1_506yy")
+bob_height = 0.05
+bob_speed = 1.5
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1458696139]
 radius = 0.25

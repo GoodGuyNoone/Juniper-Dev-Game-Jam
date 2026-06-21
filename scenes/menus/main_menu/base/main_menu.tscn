@@ -49,7 +49,7 @@ anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Title"
+text = "Game Jam Template"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_j7612")
@@ -165,8 +165,11 @@ offset_top = -80.0
 offset_right = 150.0
 offset_bottom = 80.0
 ui_cancel_closes = false
-text = "Really exit the game?"
-title_visible = false
+text = null
+close_button_text = null
+title = null
+title_font_size = null
+title_visible = null
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

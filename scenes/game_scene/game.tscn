@@ -1,38 +1,58 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d16kwiy1o8vq"]
 
-[ext_resource type="Script" path="res://scripts/utilities/pause_menu_controller.gd" id="1_pause_controller"]
-[ext_resource type="PackedScene" path="res://scenes/windows/pause_menu_layer.tscn" id="2_pause_menu"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://scripts/utilities/pause_menu_controller.gd" id="1_pause_controller"]
+[ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_pause_menu"]
+[ext_resource type="PackedScene" uid="uid://bljo81scw8dkj" path="res://scenes/gameplay/world/player_cursor.tscn" id="3_7ulqd"]
+[ext_resource type="Texture2D" uid="uid://bclhy2rb5ypww" path="res://assets/texture/kloofendal_48d_partly_cloudy_puresky_1k.hdr" id="3_700et"]
+[ext_resource type="PackedScene" uid="uid://buqv6vkxbadfh" path="res://scenes/gameplay/world/pool.tscn" id="4_o347i"]
+[ext_resource type="Script" uid="uid://cxk8077hy27md" path="res://scripts/gameplay/controllers/ray_cast_mouse_controller.gd" id="6_wedpv"]
+[ext_resource type="PackedScene" uid="uid://qrhryg6uihmx" path="res://scenes/gameplay/world/buoy.tscn" id="7_wedpv"]
 
-[node name="Game" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
+panorama = ExtResource("3_700et")
+energy_multiplier = 2.0
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.08, 0.09, 0.1, 1)
+[sub_resource type="Sky" id="Sky_wedpv"]
+sky_material = SubResource("PanoramaSkyMaterial_7ulqd")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="Environment" id="Environment_fhy3a"]
+background_mode = 2
+sky = SubResource("Sky_wedpv")
+ambient_light_source = 3
+reflected_light_source = 2
 
-[node name="Label" type="Label" parent="CenterContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Game Scene"
+[node name="Game" type="Node3D" unique_id=1199325004]
 
-[node name="PauseMenuController" type="Node" parent="."]
+[node name="World" type="Node3D" parent="." unique_id=1729372746]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=364234372]
+environment = SubResource("Environment_fhy3a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=88979955]
+transform = Transform3D(1, 0, 0, 0, -0.42424688, 0.90554655, 0, -0.90554655, -0.42424688, 0, 0, 0)
+
+[node name="Pool" parent="World" unique_id=581915816 instance=ExtResource("4_o347i")]
+
+[node name="Camera3D" type="Camera3D" parent="World" unique_id=2056347591]
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 6, 8)
+
+[node name="RayCast3D" type="RayCast3D" parent="World/Camera3D" unique_id=1476655539]
+target_position = Vector3(0, 0, -2)
+
+[node name="PlayerCursor" parent="World" unique_id=313530050 instance=ExtResource("3_7ulqd")]
+
+[node name="buoy_container" type="Node3D" parent="World" unique_id=106057066]
+
+[node name="Controllers" type="Node" parent="." unique_id=1583458101]
+
+[node name="PauseMenuController" type="Node" parent="Controllers" unique_id=1368443535]
 script = ExtResource("1_pause_controller")
 pause_menu_packed = ExtResource("2_pause_menu")
+
+[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=545023362 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container")]
+script = ExtResource("6_wedpv")
+pool = NodePath("../../World/Pool")
+camera = NodePath("../../World/Camera3D")
+player_cursor = NodePath("../../World/PlayerCursor")
+buoy_scene = ExtResource("7_wedpv")
+buoy_container = NodePath("../../World/buoy_container")

@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://buqv6vkxbadfh"]
+
+[ext_resource type="Script" uid="uid://lc2wivq12xrv" path="res://scripts/gameplay/world/pool.gd" id="1_gwx2c"]
+[ext_resource type="Shader" uid="uid://qei4si84bkf2" path="res://assets/shader/water_compatible.gdshader" id="1_tp48n"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tp48n"]
+noise_type = 3
+seed = 3
+frequency = 0.013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tp48n"]
+noise = SubResource("FastNoiseLite_tp48n")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.75
+bump_strength = 2.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gwx2c"]
+noise_type = 3
+seed = 6
+offset = Vector3(95, 0, 0)
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_or3nf"]
+noise = SubResource("FastNoiseLite_gwx2c")
+seamless = true
+seamless_blend_skirt = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ew1xe"]
+render_priority = 0
+shader = ExtResource("1_tp48n")
+shader_parameter/surface_color = Color(0.18039216, 0.76862746, 0.7137255, 1)
+shader_parameter/depth_color = Color(0.08, 0.2, 0.4, 1)
+shader_parameter/foam_color = Color(0.79607844, 0.9529412, 0.9411765, 1)
+shader_parameter/depth_size = 1.635
+shader_parameter/surface_roughness = 0.05
+shader_parameter/foam_roughness = 0.05
+shader_parameter/caustics_strength = 2.0
+shader_parameter/caustics_scale = Vector2(0.5, 0.5)
+shader_parameter/wave_texture = SubResource("NoiseTexture2D_or3nf")
+shader_parameter/wave_normal_texture = SubResource("NoiseTexture2D_tp48n")
+shader_parameter/wave_softness = 3.0
+shader_parameter/wave_scale = Vector2(0.2, 0.2)
+shader_parameter/wave_layer_scale = Vector2(1.5, 1.5)
+shader_parameter/wave_highlight = 0.5
+shader_parameter/wave_velocity = Vector2(0.01, 0.02)
+shader_parameter/edge_foam_depth_size = 1.0
+shader_parameter/wave_foam_amount = 0.8
+shader_parameter/foam_start = 0.65
+shader_parameter/foam_end = 0.9
+shader_parameter/foam_exponent = 2.0
+shader_parameter/refraction_amount = 0.5
+shader_parameter/refraction_exponent = 0.5
+shader_parameter/displacement_amount = 0.3
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nah82"]
+material = SubResource("ShaderMaterial_ew1xe")
+size = Vector2(20, 20)
+subdivide_width = 200
+subdivide_depth = 200
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lepi"]
+size = Vector3(20, 0.5, 20)
+
+[node name="Pool" type="Node3D" unique_id=581915816]
+script = ExtResource("1_gwx2c")
+
+[node name="WaterVisuals" type="MeshInstance3D" parent="." unique_id=1018738310]
+mesh = SubResource("PlaneMesh_nah82")
+
+[node name="CursorCollision" type="StaticBody3D" parent="." unique_id=563552908]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CursorCollision" unique_id=1642379704]
+shape = SubResource("BoxShape3D_2lepi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1080788683]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7259716, -1.2, 5.131379)
+size = Vector3(0.5, 3, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1081229354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4561415, -1.2, 0)
+size = Vector3(0.5, 3, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1836745883]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -0.80069757, -1.2, -5)
+size = Vector3(0.5, 3, 10)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=321904786]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.929472, -1.2, 0.13137913)
+size = Vector3(0.5, 3, 10)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1003573157]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, -0.45724678, -1.1999998, 0.13137951)
+size = Vector3(0.5, 11.7734375, 10)

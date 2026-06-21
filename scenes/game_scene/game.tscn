@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_pause_menu"]
 [ext_resource type="PackedScene" uid="uid://bljo81scw8dkj" path="res://scenes/gameplay/world/player_cursor.tscn" id="3_7ulqd"]
 [ext_resource type="Texture2D" uid="uid://bclhy2rb5ypww" path="res://assets/texture/kloofendal_48d_partly_cloudy_puresky_1k.hdr" id="3_700et"]
+[ext_resource type="PackedScene" uid="uid://cegyvf8ttr7s6" path="res://scenes/gameplay/world/fish.tscn" id="4_fhy3a"]
 [ext_resource type="PackedScene" uid="uid://buqv6vkxbadfh" path="res://scenes/gameplay/world/pool.tscn" id="4_o347i"]
 [ext_resource type="Script" uid="uid://cxk8077hy27md" path="res://scripts/gameplay/controllers/ray_cast_mouse_controller.gd" id="6_wedpv"]
 [ext_resource type="PackedScene" uid="uid://qrhryg6uihmx" path="res://scenes/gameplay/world/buoy.tscn" id="7_wedpv"]
+[ext_resource type="Script" uid="uid://ypig5c3ypcht" path="res://scripts/gameplay/world/fish_coordinator.gd" id="8_oxnsv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -40,16 +42,24 @@ transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.7660
 
 [node name="BuoyContainer" type="Node3D" parent="World" unique_id=106057066]
 
+[node name="FishContainer" type="Node3D" parent="World" unique_id=1521386689]
+
 [node name="Controllers" type="Node" parent="." unique_id=1583458101]
 
 [node name="PauseMenuController" type="Node" parent="Controllers" unique_id=1368443535]
 script = ExtResource("1_pause_controller")
 pause_menu_packed = ExtResource("2_pause_menu")
 
-[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=545023362 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container")]
+[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=545023362 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator")]
 script = ExtResource("6_wedpv")
 pool = NodePath("../../World/Pool")
 camera = NodePath("../../World/Camera3D")
 player_cursor = NodePath("../../World/PlayerCursor")
 buoy_scene = ExtResource("7_wedpv")
 buoy_container = NodePath("../../World/BuoyContainer")
+fish_coordinator = NodePath("../FishCoordinator")
+
+[node name="FishCoordinator" type="Node" parent="Controllers" unique_id=2081963237 node_paths=PackedStringArray("fish_container")]
+script = ExtResource("8_oxnsv")
+fish_scene = ExtResource("4_fhy3a")
+fish_container = NodePath("../../World/FishContainer")

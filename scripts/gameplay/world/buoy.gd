@@ -11,7 +11,7 @@ var is_casted: bool = false
 var _base_y := 0.0
 var _time_passed := 0.0
 
-@onready var visual: Node3D = $Visual
+@onready var visuals: Node3D = $Visuals
 
 
 func _process(delta: float) -> void:
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		return
 	
 	_time_passed += delta
-	visual.position.y = _base_y + sin(_time_passed * bob_speed) * bob_height
+	visuals.position.y = _base_y + sin(_time_passed * bob_speed) * bob_height
 
 
 func land_at(world_position: Vector3) -> void:
@@ -29,6 +29,7 @@ func land_at(world_position: Vector3) -> void:
 	visible = true
 	landed.emit(self)
 	_time_passed = 0.0
+	
 
 
 func retrieve() -> void:

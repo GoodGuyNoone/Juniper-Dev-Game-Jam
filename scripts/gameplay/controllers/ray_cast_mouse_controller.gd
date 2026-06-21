@@ -6,6 +6,7 @@ extends Node
 @export var player_cursor: Node3D
 @export var buoy_scene: PackedScene 
 @export var buoy_container: Node3D
+@export var fish_coordinator: FishCoordinator
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null
@@ -47,6 +48,8 @@ func _try_cast() -> void:
 	buoy.land_at(current_water_position)
 
 	active_buoy = buoy
+
+	fish_coordinator.send_fish_to_buoy(buoy)
 
 
 func _retrieve_buoy() -> void:

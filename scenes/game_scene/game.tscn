@@ -36,12 +36,9 @@ transform = Transform3D(1, 0, 0, 0, -0.42424688, 0.90554655, 0, -0.90554655, -0.
 [node name="Camera3D" type="Camera3D" parent="World" unique_id=2056347591]
 transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 6, 8)
 
-[node name="RayCast3D" type="RayCast3D" parent="World/Camera3D" unique_id=1476655539]
-target_position = Vector3(0, 0, -2)
-
 [node name="PlayerCursor" parent="World" unique_id=313530050 instance=ExtResource("3_7ulqd")]
 
-[node name="buoy_container" type="Node3D" parent="World" unique_id=106057066]
+[node name="BuoyContainer" type="Node3D" parent="World" unique_id=106057066]
 
 [node name="Controllers" type="Node" parent="." unique_id=1583458101]
 
@@ -55,4 +52,4 @@ pool = NodePath("../../World/Pool")
 camera = NodePath("../../World/Camera3D")
 player_cursor = NodePath("../../World/PlayerCursor")
 buoy_scene = ExtResource("7_wedpv")
-buoy_container = NodePath("../../World/buoy_container")
+buoy_container = NodePath("../../World/BuoyContainer")

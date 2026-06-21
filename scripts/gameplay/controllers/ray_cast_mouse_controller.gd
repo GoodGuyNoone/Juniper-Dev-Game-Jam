@@ -11,7 +11,7 @@ var current_water_position: Variant = null
 var active_buoy: Buoy = null
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mouse_position := get_viewport().get_mouse_position()
 	current_water_position = pool.get_mouse_water_position(camera, mouse_position)
 

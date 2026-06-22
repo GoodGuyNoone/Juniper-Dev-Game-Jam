@@ -17,6 +17,7 @@ var active_buoy: Buoy = null
 func _ready() -> void:
 	if game_controller != null:
 		game_controller.catch_finished.connect(retrieve_active_buoy)
+		game_controller.match_finished.connect(retrieve_active_buoy)
 
 
 func _process(_delta: float) -> void:
@@ -78,4 +79,7 @@ func retrieve_active_buoy() -> void:
 
 
 func _is_water_input_blocked() -> bool:
-	return game_controller != null and game_controller.is_catching
+	if game_controller == null:
+		return false
+
+	return game_controller.is_catching or not game_controller.is_match_running

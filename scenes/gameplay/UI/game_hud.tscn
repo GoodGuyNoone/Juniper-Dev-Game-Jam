@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c6q8tabh5rtg5"]
+
+[ext_resource type="Script" uid="uid://b1aua62ays32a" path="res://scripts/gameplay/UI/game_hud.gd" id="1_s5naw"]
+
+[node name="GameHUD" type="Control" unique_id=242013989]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_s5naw")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=128389810]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 322.0
+offset_right = 1120.0
+offset_bottom = 378.0
+mouse_filter = 2
+text = "50 kg"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1734338164]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 645.0
+offset_top = 51.0
+offset_right = 685.0
+offset_bottom = 74.0
+mouse_filter = 2
+text = "05:00"

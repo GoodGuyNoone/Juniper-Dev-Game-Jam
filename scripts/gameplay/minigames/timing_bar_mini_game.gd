@@ -37,6 +37,13 @@ func stop() -> void:
 	hide()
 
 
+func cancel() -> void:
+	if not is_running:
+		return
+
+	_finish(false)
+
+
 func _process(delta: float) -> void:
 	if not is_running: 
 		return

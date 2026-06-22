@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://duo2mgjedbqhj" path="res://scripts/gameplay/controllers/game_controller.gd" id="10_lnrhe"]
 [ext_resource type="PackedScene" uid="uid://fh7dur8nac6g" path="res://scenes/gameplay/MiniGames/timing_bar_mini_game.tscn" id="11_tr8b4"]
 [ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
+[ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -87,3 +88,8 @@ offset_left = 605.0
 offset_top = 303.0
 offset_right = 605.0
 offset_bottom = 303.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=660597012]
+
+[node name="GameHUD" parent="CanvasLayer" unique_id=242013989 node_paths=PackedStringArray("game_controller") instance=ExtResource("13_vvut4")]
+game_controller = NodePath("../../Controllers/GameController")

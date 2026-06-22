@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cv0mp4xm35rdf"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/UI/score_board_row.gd" id="1_eceso"]
+
+[node name="ScoreBoardRow" type="HBoxContainer"]
+custom_minimum_size = Vector2(210, 22)
+mouse_filter = 2
+theme_override_constants/separation = 8
+script = ExtResource("1_eceso")
+
+[node name="RankLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "1."
+
+[node name="NameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "Player"
+
+[node name="ScoreLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "0.00 kg"
+horizontal_alignment = 2

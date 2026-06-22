@@ -10,9 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://qrhryg6uihmx" path="res://scenes/gameplay/world/buoy.tscn" id="7_wedpv"]
 [ext_resource type="Script" uid="uid://ypig5c3ypcht" path="res://scripts/gameplay/controllers/fish_coordinator.gd" id="8_oxnsv"]
 [ext_resource type="Script" uid="uid://duo2mgjedbqhj" path="res://scripts/gameplay/controllers/game_controller.gd" id="10_lnrhe"]
+[ext_resource type="Script" uid="uid://bysxy7nm52wfl" path="res://scripts/gameplay/controllers/score_board_controller.gd" id="11_lo7qv"]
 [ext_resource type="PackedScene" uid="uid://fh7dur8nac6g" path="res://scenes/gameplay/MiniGames/timing_bar_mini_game.tscn" id="11_tr8b4"]
 [ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
+[ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -74,6 +77,11 @@ script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
+match_duration = 10.0
+
+[node name="ScoreBoardController" type="Node" parent="Controllers" unique_id=829880478 node_paths=PackedStringArray("game_controller")]
+script = ExtResource("11_lo7qv")
+game_controller = NodePath("../GameController")
 
 [node name="MiniGames" type="Node" parent="." unique_id=2085452047]
 
@@ -93,3 +101,14 @@ offset_bottom = 303.0
 
 [node name="GameHUD" parent="CanvasLayer" unique_id=242013989 node_paths=PackedStringArray("game_controller") instance=ExtResource("13_vvut4")]
 game_controller = NodePath("../../Controllers/GameController")
+
+[node name="ScoreBoardPanel" parent="CanvasLayer/GameHUD" unique_id=1045653095 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("15_xpges")]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 88.0
+offset_right = 1236.0
+offset_bottom = 218.0
+score_board_controller = NodePath("../../../Controllers/ScoreBoardController")
+
+[node name="ResultsPanel" parent="CanvasLayer" unique_id=1610281501 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("16_7s0c3")]
+score_board_controller = NodePath("../../Controllers/ScoreBoardController")

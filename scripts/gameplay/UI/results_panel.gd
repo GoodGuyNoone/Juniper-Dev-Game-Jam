@@ -32,10 +32,6 @@ func _show_results(standings: Array[Dictionary]) -> void:
 		var entry := standings[i]
 		var row := row_scene.instantiate() as ScoreBoardRow
 
-		if row == null:
-			push_warning("Results row scene root must use ScoreBoardRow script.")
-			return
-
 		rows_container.add_child(row)
 		row.set_score_row(
 			i + 1,

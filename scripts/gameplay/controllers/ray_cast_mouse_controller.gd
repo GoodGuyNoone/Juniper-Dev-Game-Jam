@@ -8,9 +8,15 @@ extends Node
 @export var buoy_container: Node3D
 @export var fish_coordinator: FishCoordinator
 @export var timing_bar_mini_game: TimingBarMiniGame
+@export var game_controller: GameController
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null
+
+
+func _ready() -> void:
+	if game_controller != null:
+		game_controller.catch_finished.connect(retrieve_active_buoy)
 
 
 func _process(_delta: float) -> void:
@@ -43,14 +49,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		_try_cast()
 
 	if event.button_index == MOUSE_BUTTON_RIGHT:
-		_retrieve_buoy()
+		retrieve_active_buoy()
 
 
 func _try_cast() -> void:
 	if current_water_position == null:
 		return
 	
-	_retrieve_buoy()
+	retrieve_active_buoy()
 
 	var buoy := buoy_scene.instantiate() as Buoy
 	buoy_container.add_child(buoy)
@@ -61,7 +67,7 @@ func _try_cast() -> void:
 	fish_coordinator.send_fish_to_buoy(buoy)
 
 
-func _retrieve_buoy() -> void:
+func retrieve_active_buoy() -> void:
 	if active_buoy == null:
 		return
 
@@ -72,4 +78,4 @@ func _retrieve_buoy() -> void:
 
 
 func _is_water_input_blocked() -> bool:
-	return timing_bar_mini_game != null and timing_bar_mini_game.is_running
+	return game_controller != null and game_controller.is_catching

@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ypig5c3ypcht" path="res://scripts/gameplay/controllers/fish_coordinator.gd" id="8_oxnsv"]
 [ext_resource type="Script" uid="uid://duo2mgjedbqhj" path="res://scripts/gameplay/controllers/game_controller.gd" id="10_lnrhe"]
 [ext_resource type="PackedScene" uid="uid://fh7dur8nac6g" path="res://scenes/gameplay/MiniGames/timing_bar_mini_game.tscn" id="11_tr8b4"]
+[ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -51,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 
 script = ExtResource("1_pause_controller")
 pause_menu_packed = ExtResource("2_pause_menu")
 
-[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=1728235215 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator", "timing_bar_mini_game")]
+[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=1728235215 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator", "timing_bar_mini_game", "game_controller")]
 script = ExtResource("6_wedpv")
 pool = NodePath("../../World/Pool")
 camera = NodePath("../../World/Camera3D")
@@ -60,16 +61,18 @@ buoy_scene = ExtResource("7_wedpv")
 buoy_container = NodePath("../../World/BuoyContainer")
 fish_coordinator = NodePath("../FishCoordinator")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
+game_controller = NodePath("../GameController")
 
 [node name="FishCoordinator" type="Node" parent="Controllers" unique_id=1641570867 node_paths=PackedStringArray("fish_container")]
 script = ExtResource("8_oxnsv")
 fish_scene = ExtResource("4_fhy3a")
 fish_container = NodePath("../../World/FishContainer")
 
-[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "timing_bar_mini_game")]
+[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "timing_bar_mini_game", "reel_spin_mini_game")]
 script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
+reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
 
 [node name="MiniGames" type="Node" parent="." unique_id=2085452047]
 
@@ -78,3 +81,9 @@ offset_left = 331.0
 offset_top = 76.0
 offset_right = 431.0
 offset_bottom = 276.0
+
+[node name="ReelSpinMiniGame" parent="MiniGames" unique_id=1597237571 instance=ExtResource("12_vvut4")]
+offset_left = 605.0
+offset_top = 303.0
+offset_right = 605.0
+offset_bottom = 303.0

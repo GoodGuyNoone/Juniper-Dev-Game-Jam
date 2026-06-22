@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bejdvgm08cn36"]
+
+[ext_resource type="Script" uid="uid://64s2eot637xd" path="res://scripts/gameplay/minigames/reel_spin_mini_game.gd" id="1_th37x"]
+
+[node name="ReelSpinMiniGame" type="Control" unique_id=1597237571]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_th37x")
+
+[node name="ReelRoot" type="Control" parent="." unique_id=235586148]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReelFace" type="ColorRect" parent="ReelRoot" unique_id=206768086]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 35)
+color = Color(0.8274504, 0.9393898, 0.36719698, 1)
+
+[node name="HandlePivot" type="Control" parent="ReelRoot" unique_id=1865918108]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="ReelHandle" type="ColorRect" parent="ReelRoot/HandlePivot" unique_id=1588207062]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 48.0
+offset_top = -8.0
+offset_right = 68.0
+offset_bottom = 8.0
+pivot_offset = Vector2(10, 8)
+mouse_filter = 2
+color = Color(0.28627452, 1, 1, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=801909005]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -50.0
+offset_right = 4.000001
+offset_bottom = -23.0
+
+[node name="TimerLabel" type="Label" parent="." unique_id=217170146]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "55"
+horizontal_alignment = 1

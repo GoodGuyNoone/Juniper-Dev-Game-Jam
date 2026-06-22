@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://qrhryg6uihmx"]
+[gd_scene load_steps=3 format=3 uid="uid://qrhryg6uihmx"]
 
-[ext_resource type="Script" uid="uid://ba0w2u7d3pjn5" path="res://scripts/gameplay/world/buoy.gd" id="1_506yy"]
+[ext_resource type="Script" path="res://scripts/gameplay/world/buoy.gd" id="1_506yy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx8cx"]
 albedo_color = Color(0, 1, 1, 1)
 
-[node name="Buoy" type="Node3D" unique_id=1926507034]
+[node name="Buoy" type="Node3D"]
 script = ExtResource("1_506yy")
 bob_speed = 5.0
 
-[node name="Visuals" type="Node3D" parent="." unique_id=372540036]
+[node name="Visuals" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Visuals" unique_id=1458696139]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Visuals"]
 material_override = SubResource("StandardMaterial3D_lx8cx")
 radius = 0.25

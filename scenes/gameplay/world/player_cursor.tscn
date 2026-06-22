@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://bljo81scw8dkj"]
+[gd_scene load_steps=3 format=3 uid="uid://bljo81scw8dkj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x61n"]
-albedo_color = Color(1, 0.17254902, 1, 1)
+albedo_color = Color(1, 0.172549, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3x61n"]
 material = SubResource("StandardMaterial3D_3x61n")
 size = Vector2(0.5, 0.5)
 
-[node name="PlayerCursor" type="Node3D" unique_id=313530050]
+[node name="PlayerCursor" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=266407952]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_3x61n")

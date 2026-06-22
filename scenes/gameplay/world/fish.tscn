@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://cegyvf8ttr7s6"]
+[gd_scene load_steps=2 format=3 uid="uid://cegyvf8ttr7s6"]
 
-[ext_resource type="Script" uid="uid://c4lms0u2rqflr" path="res://scripts/gameplay/world/fish.gd" id="1_o58mf"]
+[ext_resource type="Script" path="res://scripts/gameplay/world/fish.gd" id="1_o58mf"]
 
-[node name="Fish" type="Node3D" unique_id=1087799269]
+[node name="Fish" type="Node3D"]
 script = ExtResource("1_o58mf")
 
-[node name="Visuals" type="Node3D" parent="." unique_id=28921668]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0.5)
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0.5)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals" unique_id=1863700760]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals"]
 radius = 0.2
 height = 1.0

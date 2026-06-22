@@ -7,12 +7,18 @@ extends Node
 @export var buoy_scene: PackedScene 
 @export var buoy_container: Node3D
 @export var fish_coordinator: FishCoordinator
+@export var timing_bar_mini_game: TimingBarMiniGame
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null
 
 
 func _process(_delta: float) -> void:
+	if _is_water_input_blocked():
+		current_water_position = null
+		player_cursor.visible = false
+		return
+
 	var mouse_position := get_viewport().get_mouse_position()
 	current_water_position = pool.get_mouse_water_position(camera, mouse_position)
 
@@ -25,6 +31,9 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_water_input_blocked():
+		return
+
 	if event is not InputEventMouseButton:
 		return
 	if not event.is_pressed():
@@ -60,3 +69,7 @@ func _retrieve_buoy() -> void:
 		active_buoy.retrieve()
 	
 	active_buoy = null
+
+
+func _is_water_input_blocked() -> bool:
+	return timing_bar_mini_game != null and timing_bar_mini_game.is_running

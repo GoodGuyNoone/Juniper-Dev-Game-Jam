@@ -27,7 +27,8 @@ var is_available: bool = true
 
 var rng := RandomNumberGenerator.new()
 
-@onready var visuals: Node3D = $Visuals
+@onready var visuals: Node3D = %Visuals
+@onready var interest_marker: Node3D = %InterestMark
 
 
 func _ready() -> void:
@@ -75,6 +76,7 @@ func interest_in_buoy(buoy: Node3D) -> void:
 	if not is_available:
 		return
 
+	interest_marker.visible = true
 	target_buoy = buoy
 	is_available = false
 	state = State.INTERESTED
@@ -131,6 +133,7 @@ func _swim_toward(target: Vector3, speed: float, delta: float) -> void:
 
 
 func release() -> void:
+	interest_marker.visible = false
 	target_buoy = null
 	is_available = true
 	state = State.WANDER
@@ -145,5 +148,6 @@ func _apply_visual_scale() -> void:
 
 
 func _bite() -> void:
+	interest_marker.visible = false
 	state = State.BITE
 	bitten.emit(self)

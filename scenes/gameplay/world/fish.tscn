@@ -1,13 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cegyvf8ttr7s6"]
+[gd_scene format=3 uid="uid://cegyvf8ttr7s6"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/world/fish.gd" id="1_o58mf"]
+[ext_resource type="Script" uid="uid://c4lms0u2rqflr" path="res://scripts/gameplay/world/fish.gd" id="1_o58mf"]
 
-[node name="Fish" type="Node3D"]
+[node name="Fish" type="Node3D" unique_id=1418232606]
 script = ExtResource("1_o58mf")
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=363422548]
+unique_name_in_owner = true
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0.5)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals" unique_id=2104551288]
 radius = 0.2
 height = 1.0
+
+[node name="InterestMark" type="Node3D" parent="." unique_id=1185633530]
+unique_name_in_owner = true
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 1.5, 0.168)
+visible = false
+
+[node name="Label3D" type="Label3D" parent="InterestMark" unique_id=239755094]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+pixel_size = 0.01
+billboard = 2
+no_depth_test = true
+render_priority = 10
+outline_render_priority = 1
+modulate = Color(0.94440365, 0.46829206, 0.4378575, 1)
+text = "!"

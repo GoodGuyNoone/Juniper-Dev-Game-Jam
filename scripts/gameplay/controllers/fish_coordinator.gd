@@ -10,6 +10,8 @@ signal fish_bitten(fish: Fish)
 @export var spawn_center: Vector3 = Vector3.ZERO
 @export var spawn_size: Vector2 = Vector2(14.0, 14.0)
 @export var spawn_y: float = -0.15
+@export var buoy_attraction_radius: float = 4.0
+@export var max_interested_fish: int = 3
 
 @export_group("Small Fish")
 @export var small_fish_respawn_time: float = 5.0
@@ -38,6 +40,7 @@ signal fish_bitten(fish: Fish)
 @export var large_chase_speed: float = 1.0
 @export var large_wander_radius: float = 3.8
 
+
 var fishes: Array[Fish] = []
 var rng := RandomNumberGenerator.new()
 
@@ -60,9 +63,9 @@ func spawn_fish() -> void:
 	_spawn_fish_type(&"large", large_fish_count)
 
 
-func find_closest_available_fish(position: Vector3) -> Fish:
-	var closest_fish: Fish = null
-	var closest_distance_sq := INF
+func find_available_fish_in_radius(position: Vector3, radius: float) -> Array[Fish]:
+	var result: Array[Fish] = []
+	var radius_sq := radius * radius
 
 	for fish in fishes:
 		if not is_instance_valid(fish):
@@ -71,20 +74,26 @@ func find_closest_available_fish(position: Vector3) -> Fish:
 			continue
 
 		var distance_sq := fish.global_position.distance_squared_to(position)
-		if distance_sq < closest_distance_sq:
-			closest_distance_sq = distance_sq
-			closest_fish = fish
+		if distance_sq <= radius_sq:
+			result.append(fish)
 
-	return closest_fish
+	result.sort_custom(func(a: Fish, b: Fish):
+		return a.global_position.distance_squared_to(position) < b.global_position.distance_squared_to(position))
+
+	return result
 
 
-func send_fish_to_buoy(buoy: Buoy) -> Fish:
-	var fish := find_closest_available_fish(buoy.global_position)
-	if fish == null:
-		return null
+func send_fish_to_buoy(buoy: Buoy) -> Array[Fish]:
+	var interested_fish := find_available_fish_in_radius(buoy.global_position, buoy_attraction_radius)
 
-	fish.interest_in_buoy(buoy)
-	return fish
+	if interested_fish.is_empty():
+		return []
+
+	interested_fish = interested_fish.slice(0, max_interested_fish)
+
+	for fish in interested_fish:
+		fish.interest_in_buoy(buoy)
+	return interested_fish
 
 
 func _spawn_fish_type(fish_type: StringName, count: int) -> void:
@@ -129,7 +138,23 @@ func _get_random_spawn_position() -> Vector3:
 
 
 func _on_fish_bitten(fish: Fish) -> void:
+	_release_other_fish_targeting_buoy(fish.target_buoy, fish)
 	fish_bitten.emit(fish)
+
+
+func _release_other_fish_targeting_buoy(buoy: Node3D, biting_fish: Fish) -> void:
+	if buoy == null:
+		return
+
+	for fish in fishes:
+		if not is_instance_valid(fish):
+			continue
+		if fish == biting_fish:
+			continue
+		if fish.target_buoy != buoy:
+			continue
+
+		fish.release()
 
 
 func remove_and_respawn_fish(fish: Fish) -> void:

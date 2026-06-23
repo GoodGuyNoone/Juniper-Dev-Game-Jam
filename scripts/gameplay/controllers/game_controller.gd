@@ -69,7 +69,7 @@ func _on_fish_bitten(fish: Fish) -> void:
 	player_score += fish.weight
 	score_changed.emit(player_score)
 
-	fish.queue_free()
+	fish_coordinator.remove_and_respawn_fish(fish)
 	_end_catch()
 
 

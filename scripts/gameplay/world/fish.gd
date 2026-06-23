@@ -17,6 +17,7 @@ enum State {
 @export var fish_type: StringName = &"small"
 @export var weight: float = 0.5
 @export var visual_scale: float = 1.0
+@export var respawn_time: float = 5.0
 
 var state := State.WANDER
 var home_position: Vector3
@@ -58,7 +59,8 @@ func configure(
 	new_visual_scale: float,
 	new_wander_speed: float,
 	new_chase_speed: float,
-	new_wander_radius: float
+	new_wander_radius: float,
+	new_respawn_time: float
 ) -> void:
 	fish_type = new_fish_type
 	weight = new_weight
@@ -66,6 +68,7 @@ func configure(
 	wander_speed = new_wander_speed
 	chase_speed = new_chase_speed
 	wander_radius = new_wander_radius
+	respawn_time = new_respawn_time
 
 
 func interest_in_buoy(buoy: Node3D) -> void:

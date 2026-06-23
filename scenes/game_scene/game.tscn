@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
 [ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
-[ext_resource type="PackedScene" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
+[ext_resource type="PackedScene" uid="uid://chx64jwxnkslh" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -77,7 +77,7 @@ script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
-match_duration = 10.0
+match_duration = 20.0
 
 [node name="ScoreBoardController" type="Node" parent="Controllers" unique_id=829880478 node_paths=PackedStringArray("game_controller")]
 script = ExtResource("11_lo7qv")

@@ -5,14 +5,18 @@ signal catch_finished
 signal score_changed(score: float)
 signal match_time_changed(time_left: float)
 signal match_finished
+signal line_recovery_started(duration: float)
+signal line_recovery_finished
 
 @export var fish_coordinator: FishCoordinator
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var reel_spin_mini_game: ReelSpinMiniGame
 @export var match_duration: float = 300.0
+@export var line_recovery_duration: float = 2.0
 
 var is_catching := false
 var is_match_running := false
+var is_recovering_line := false
 var player_score := 0.0
 var time_left := 0.0
 
@@ -53,16 +57,28 @@ func _on_fish_bitten(fish: Fish) -> void:
 	var hook_success: bool = await timing_bar_mini_game.completed
 	print("Game ended: %s" % hook_success)
 
-	if not hook_success or not is_match_running:
+	if not is_match_running:
 		fish.release()
+		_end_catch()
+		return
+
+	if not hook_success:
+		fish.release()
+		_start_line_recovery()
 		_end_catch()
 		return
 
 	reel_spin_mini_game.start()
 	var reel_success: bool = await reel_spin_mini_game.completed
 
-	if not reel_success or not is_match_running:
+	if not is_match_running:
 		fish.release()
+		_end_catch()
+		return
+
+	if not reel_success:
+		fish.release()
+		_start_line_recovery()
 		_end_catch()
 		return
 
@@ -78,10 +94,29 @@ func _end_catch() -> void:
 	catch_finished.emit()
 
 
+func _start_line_recovery() -> void:
+	if not is_match_running:
+		return
+	if is_recovering_line:
+		return
+
+	is_recovering_line = true
+	line_recovery_started.emit(line_recovery_duration)
+
+
+func complete_line_recovery() -> void:
+	if not is_recovering_line:
+		return
+
+	is_recovering_line = false
+	line_recovery_finished.emit()
+
+
 func _start_match() -> void:
 	print("match started")
 	is_match_running = true
 	is_catching = false
+	is_recovering_line = false
 	player_score = 0.0
 	time_left = match_duration
 
@@ -94,6 +129,7 @@ func _finish_match() -> void:
 		return
 
 	is_match_running = false
+	complete_line_recovery()
 	time_left = 0.0
 	timing_bar_mini_game.cancel()
 	reel_spin_mini_game.cancel()

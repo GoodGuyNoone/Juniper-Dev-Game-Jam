@@ -82,4 +82,8 @@ func _is_water_input_blocked() -> bool:
 	if game_controller == null:
 		return false
 
-	return game_controller.is_catching or not game_controller.is_match_running
+	return (
+		game_controller.is_catching
+		or game_controller.is_recovering_line
+		or not game_controller.is_match_running
+	)

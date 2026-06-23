@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
 [ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
 [ext_resource type="PackedScene" uid="uid://chx64jwxnkslh" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
+[ext_resource type="PackedScene" uid="uid://d08imi5newn1k" path="res://scenes/gameplay/UI/line_recovery_ui.tscn" id="17_3ivq0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
 panorama = ExtResource("3_700et")
@@ -113,3 +114,6 @@ score_board_controller = NodePath("../../../Controllers/ScoreBoardController")
 
 [node name="ResultsPanel" parent="CanvasLayer" unique_id=1610281501 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("16_7s0c3")]
 score_board_controller = NodePath("../../Controllers/ScoreBoardController")
+
+[node name="LineRecoveryUI" parent="CanvasLayer" unique_id=2018679613 node_paths=PackedStringArray("game_controller") instance=ExtResource("17_3ivq0")]
+game_controller = NodePath("../../Controllers/GameController")

@@ -15,16 +15,23 @@ var time_left := 0.0
 var progress := 0.0
 var previous_angle := 0.0
 var has_previous_angle := false
+var _fish_start_x := 0.0
+var _fish_end_x := 0.0
+var _rope_start_width := 0.0
 
 @onready var reel_root: Control = %ReelRoot
 @onready var reel_face: Control = %ReelFace
 @onready var handle_pivot: Control = %HandlePivot
 @onready var reel_handle: Control = %ReelHandle
-@onready var progress_bar: ProgressBar = %ProgressBar
+@onready var rope_clip: Control = %RopeClip
+@onready var rope_texture: TextureRect = %RopeTexture
+@onready var fish_sticker: TextureRect = %FishSticker
+@onready var fish_caught_position: Control = %FishCaughtPosition
 @onready var timer_label: Label = %TimerLabel
 
 
 func _ready() -> void:
+	_cache_progress_layout()
 	hide()
 
 
@@ -36,7 +43,7 @@ func start() -> void:
 	progress = 0.0
 	has_previous_angle = false
 	_set_reel_angle(0.0)
-	progress_bar.value = 0.0
+	_update_catch_progress_visuals()
 
 
 func cancel() -> void:
@@ -100,7 +107,7 @@ func handle_mouse_spin() -> void:
 
 	var useful_delta := maxf(0.0, angle_delta * spin_direction)
 	progress += useful_delta / TAU
-	progress_bar.value = minf(progress / required_rotations * 100.0, 100.0)
+	_update_catch_progress_visuals()
 
 	if progress >= required_rotations:
 		_finish(true)
@@ -114,6 +121,23 @@ func _is_mouse_on_handle() -> bool:
 func _set_reel_angle(angle: float) -> void:
 	handle_pivot.rotation = angle
 	reel_face.rotation = angle
+
+
+func _cache_progress_layout() -> void:
+	_fish_start_x = fish_sticker.position.x
+	_fish_end_x = fish_caught_position.position.x
+	_rope_start_width = rope_clip.size.x
+
+	rope_texture.position = Vector2.ZERO
+	rope_texture.size.x = maxf(rope_texture.size.x, _rope_start_width)
+	rope_texture.size.y = maxf(rope_texture.size.y, rope_clip.size.y)
+
+
+func _update_catch_progress_visuals() -> void:
+	var progress_ratio := clampf(progress / required_rotations, 0.0, 1.0)
+
+	fish_sticker.position.x = lerpf(_fish_start_x, _fish_end_x, progress_ratio)
+	rope_clip.size.x = _rope_start_width * (1.0 - progress_ratio)
 
 
 func _finish(success: bool) -> void:

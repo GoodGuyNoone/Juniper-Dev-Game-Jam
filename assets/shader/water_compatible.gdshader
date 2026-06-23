@@ -6,9 +6,9 @@
 
 shader_type spatial;
 #if USE_UNSHADED
-render_mode unshaded, depth_draw_never;
+render_mode unshaded, blend_mix, depth_draw_never;
 #else
-render_mode depth_draw_never;
+render_mode blend_mix, depth_draw_never;
 #endif
 
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture;
@@ -221,7 +221,10 @@ void fragment() {
 	
 	ROUGHNESS = mix(surface_roughness, foam_roughness, foam);
 	
-	ALBEDO = color;
+	  ALBEDO = color;
+
+	  float water_alpha = mix(depth_color.a, surface_color.a, depth);
+	  ALPHA = mix(water_alpha, foam_color.a, foam);
 }
 
 #if USE_STYLIZED_LIGHTING && !USE_UNSHADED

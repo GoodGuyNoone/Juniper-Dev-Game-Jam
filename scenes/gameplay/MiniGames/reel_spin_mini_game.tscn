@@ -1,11 +1,75 @@
 [gd_scene format=3 uid="uid://bejdvgm08cn36"]
 
 [ext_resource type="Script" uid="uid://64s2eot637xd" path="res://scripts/gameplay/minigames/reel_spin_mini_game.gd" id="1_th37x"]
+[ext_resource type="Texture2D" uid="uid://dot242gandj73" path="res://import/Cat_01.png" id="2_6a0kt"]
+[ext_resource type="Texture2D" uid="uid://6xwea4twt5s" path="res://assets/icons/Line.png" id="3_hkm5x"]
+[ext_resource type="Texture2D" uid="uid://bdn0fh08umm76" path="res://assets/icons/Fish.png" id="4_hxs7f"]
 
 [node name="ReelSpinMiniGame" type="Control" unique_id=1597237571]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_th37x")
+
+[node name="ProgressStrip" type="Control" parent="." unique_id=946046221]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -260.0
+offset_top = -240.0
+offset_right = 260.0
+offset_bottom = -160.0
+mouse_filter = 2
+
+[node name="RopeClip" type="Control" parent="ProgressStrip" unique_id=596986007]
+unique_name_in_owner = true
+clip_contents = true
+anchors_preset = 0
+offset_left = 83.0
+offset_top = 120.0
+offset_right = 390.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="RopeTexture" type="TextureRect" parent="ProgressStrip/RopeClip" unique_id=1705951413]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 12.0
+mouse_filter = 2
+texture = ExtResource("3_hkm5x")
+expand_mode = 1
+
+[node name="FishermanSticker" type="TextureRect" parent="ProgressStrip" unique_id=361949656]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -63.0
+offset_top = 102.0
+offset_right = 92.0
+offset_bottom = 257.0
+mouse_filter = 2
+texture = ExtResource("2_6a0kt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FishSticker" type="TextureRect" parent="ProgressStrip" unique_id=2036967752]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 338.0
+offset_top = 57.0
+offset_right = 466.0
+offset_bottom = 185.0
+mouse_filter = 2
+texture = ExtResource("4_hxs7f")
+stretch_mode = 5
+
+[node name="FishCaughtPosition" type="Control" parent="ProgressStrip" unique_id=1023530983]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 52.0
+offset_right = 92.0
+offset_bottom = 52.0
+mouse_filter = 2
 
 [node name="ReelRoot" type="Control" parent="." unique_id=235586148]
 unique_name_in_owner = true
@@ -50,13 +114,6 @@ offset_bottom = 8.0
 pivot_offset = Vector2(10, 8)
 mouse_filter = 2
 color = Color(0.28627452, 1, 1, 1)
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=801909005]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = -50.0
-offset_right = 4.000001
-offset_bottom = -23.0
 
 [node name="TimerLabel" type="Label" parent="." unique_id=217170146]
 unique_name_in_owner = true

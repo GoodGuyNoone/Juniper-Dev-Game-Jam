@@ -42,7 +42,8 @@ transform = Transform3D(1, 0, 0, 0, -0.424247, 0.905547, 0, -0.905547, -0.424247
 [node name="Pool" parent="World" unique_id=1582846410 instance=ExtResource("4_o347i")]
 
 [node name="Camera3D" type="Camera3D" parent="World" unique_id=488783414]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 6, 8)
+transform = Transform3D(1, 0, 0, 0, 0.9063077, 0.42261824, 0, -0.42261824, 0.9063077, 0, 6.21, 13)
+fov = 40.0
 
 [node name="PlayerCursor" parent="World" unique_id=2048376276 instance=ExtResource("3_7ulqd")]
 
@@ -92,10 +93,10 @@ offset_right = 431.0
 offset_bottom = 276.0
 
 [node name="ReelSpinMiniGame" parent="MiniGames" unique_id=1597237571 instance=ExtResource("12_vvut4")]
-offset_left = 605.0
-offset_top = 303.0
-offset_right = 605.0
-offset_bottom = 303.0
+offset_left = 624.0
+offset_top = 545.0
+offset_right = 624.0
+offset_bottom = 545.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=660597012]
 

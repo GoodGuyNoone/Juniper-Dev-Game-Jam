@@ -55,6 +55,6 @@ script = ExtResource("1_splash_script")
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_xerqv")
 amount = 4
-explosiveness = 0.8
+explosiveness = 0.55
 process_material = SubResource("ParticleProcessMaterial_r81qg")
 draw_pass_1 = SubResource("QuadMesh_3hlqi")

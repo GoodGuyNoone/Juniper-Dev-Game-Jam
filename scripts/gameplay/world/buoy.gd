@@ -28,7 +28,7 @@ func land_at(world_position: Vector3) -> void:
 	_base_visuals_y = visuals.position.y
 	is_casted = true
 	visible = true
-	stop_splash()
+	start_idle_splash()
 	landed.emit(self)
 	_time_passed = 0.0
 
@@ -41,6 +41,13 @@ func retrieve() -> void:
 	stop_splash()
 	retrieved.emit(self)
 	queue_free()
+
+
+func start_idle_splash() -> void:
+	if water_splash == null:
+		return
+
+	water_splash.start(WaterSplashFeedback.Mode.IDLE)
 
 
 func start_bite_splash() -> void:

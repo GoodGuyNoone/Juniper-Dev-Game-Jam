@@ -29,7 +29,7 @@ seamless = true
 seamless_blend_skirt = 0.75
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ew1xe"]
-render_priority = 1
+render_priority = 5
 shader = ExtResource("1_tp48n")
 shader_parameter/surface_color = Color(0.18039216, 0.76862746, 0.7137255, 0.28235295)
 shader_parameter/depth_color = Color(0.16470589, 0.6156863, 0.56078434, 1)
@@ -49,8 +49,8 @@ shader_parameter/wave_velocity = Vector2(0.01, 0.02)
 shader_parameter/edge_foam_depth_size = 1.0
 shader_parameter/wave_foam_amount = 0.499999988824
 shader_parameter/foam_start = 0.65
-shader_parameter/foam_end = 0.90000001341108
-shader_parameter/foam_exponent = 2.0
+shader_parameter/foam_end = 0.95000001415614
+shader_parameter/foam_exponent = 3.0
 shader_parameter/refraction_amount = 0.5
 shader_parameter/refraction_exponent = 0.5
 shader_parameter/displacement_amount = 0.3

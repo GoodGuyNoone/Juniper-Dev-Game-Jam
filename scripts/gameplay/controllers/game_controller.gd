@@ -20,6 +20,7 @@ var is_match_running := false
 var is_recovering_line := false
 var player_score := 0.0
 var time_left := 0.0
+var active_catch_buoy: Buoy = null
 
 
 func _ready() -> void:
@@ -55,8 +56,10 @@ func _on_fish_bitten(fish: Fish) -> void:
 		return
 
 	is_catching = true
+	active_catch_buoy = fish.target_buoy as Buoy
 
 	print("Fish bitten: %s %.2f kg" % [fish.fish_type, fish.weight])
+	_start_bite_splash()
 
 	if hook_reaction_mini_game != null:
 		hook_reaction_mini_game.start()
@@ -72,6 +75,8 @@ func _on_fish_bitten(fish: Fish) -> void:
 			_start_line_recovery()
 			_end_catch()
 			return
+
+	_start_hooked_splash()
 
 	timing_bar_mini_game.start()
 	var hook_success: bool = await timing_bar_mini_game.completed
@@ -110,8 +115,31 @@ func _on_fish_bitten(fish: Fish) -> void:
 
 
 func _end_catch() -> void:
+	_stop_active_buoy_splash()
+	active_catch_buoy = null
 	is_catching = false
 	catch_finished.emit()
+
+
+func _start_bite_splash() -> void:
+	if active_catch_buoy == null or not is_instance_valid(active_catch_buoy):
+		return
+
+	active_catch_buoy.start_bite_splash()
+
+
+func _start_hooked_splash() -> void:
+	if active_catch_buoy == null or not is_instance_valid(active_catch_buoy):
+		return
+
+	active_catch_buoy.start_hooked_splash()
+
+
+func _stop_active_buoy_splash() -> void:
+	if active_catch_buoy == null or not is_instance_valid(active_catch_buoy):
+		return
+
+	active_catch_buoy.stop_splash()
 
 
 func _start_line_recovery() -> void:
@@ -151,6 +179,7 @@ func _finish_match() -> void:
 	is_match_running = false
 	complete_line_recovery()
 	time_left = 0.0
+	_stop_active_buoy_splash()
 	if hook_reaction_mini_game != null:
 		hook_reaction_mini_game.cancel()
 	timing_bar_mini_game.cancel()

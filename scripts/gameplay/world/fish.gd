@@ -10,7 +10,7 @@ enum State {
 }
 
 @export var wander_radius: float = 3.0
-@export var bite_distance: float = 0.35
+@export var bite_distance: float = 0.1
 @export var wander_speed: float = 0.8
 @export var chase_speed: float = 1.4
 @export var turn_speed: float = 3.0

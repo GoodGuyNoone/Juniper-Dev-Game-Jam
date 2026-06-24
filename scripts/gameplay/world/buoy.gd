@@ -12,6 +12,7 @@ var _base_visuals_y := 0.0
 var _time_passed := 0.0
 
 @onready var visuals: Node3D = $Visuals
+@onready var water_splash: WaterSplashFeedback = $Visuals/WaterSplash
 
 
 func _process(delta: float) -> void:
@@ -27,6 +28,7 @@ func land_at(world_position: Vector3) -> void:
 	_base_visuals_y = visuals.position.y
 	is_casted = true
 	visible = true
+	stop_splash()
 	landed.emit(self)
 	_time_passed = 0.0
 
@@ -36,7 +38,28 @@ func retrieve() -> void:
 		return
 
 	is_casted = false
+	stop_splash()
 	retrieved.emit(self)
 	queue_free()
 
+
+func start_bite_splash() -> void:
+	if water_splash == null:
+		return
+
+	water_splash.start(WaterSplashFeedback.Mode.BITE)
+
+
+func start_hooked_splash() -> void:
+	if water_splash == null:
+		return
+
+	water_splash.start(WaterSplashFeedback.Mode.HOOKED)
+
+
+func stop_splash() -> void:
+	if water_splash == null:
+		return
+
+	water_splash.stop()
 

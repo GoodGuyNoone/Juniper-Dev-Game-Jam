@@ -81,7 +81,6 @@ fish_coordinator = NodePath("../FishCoordinator")
 hook_reaction_mini_game = NodePath("../../MiniGames/HookReactionMiniGame")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
-match_duration = 20.0
 
 [node name="ScoreBoardController" type="Node" parent="Controllers" unique_id=829880478 node_paths=PackedStringArray("game_controller")]
 script = ExtResource("11_lo7qv")

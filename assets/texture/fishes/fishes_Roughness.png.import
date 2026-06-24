@@ -2,21 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0fq3ia7fbou5"
-path.s3tc="res://.godot/imported/scene_Material_BaseColor.png-703b940546770917f77fa58cc50cfe08.s3tc.ctex"
-path.etc2="res://.godot/imported/scene_Material_BaseColor.png-703b940546770917f77fa58cc50cfe08.etc2.ctex"
+uid="uid://bg1qtldayyj4d"
+path.s3tc="res://.godot/imported/fishes_Roughness.png-496dbf9a884eeaadd952f510c74a9e5f.s3tc.ctex"
+path.etc2="res://.godot/imported/fishes_Roughness.png-496dbf9a884eeaadd952f510c74a9e5f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "f9a69eb1aec67dbe9f687fba47b49a83"
-}
 
 [deps]
 
-source_file="res://assets/models/scene_Material_BaseColor.png"
-dest_files=["res://.godot/imported/scene_Material_BaseColor.png-703b940546770917f77fa58cc50cfe08.s3tc.ctex", "res://.godot/imported/scene_Material_BaseColor.png-703b940546770917f77fa58cc50cfe08.etc2.ctex"]
+source_file="res://assets/texture/fishes/fishes_Roughness.png"
+dest_files=["res://.godot/imported/fishes_Roughness.png-496dbf9a884eeaadd952f510c74a9e5f.s3tc.ctex", "res://.godot/imported/fishes_Roughness.png-496dbf9a884eeaadd952f510c74a9e5f.etc2.ctex"]
 
 [params]
 

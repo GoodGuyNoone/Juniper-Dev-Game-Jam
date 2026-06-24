@@ -17,7 +17,6 @@ signal fish_bitten(fish: Fish)
 @export var small_fish_respawn_time: float = 5.0
 @export var small_fish_count: int = 8
 @export var small_weight_range: Vector2 = Vector2(0.2, 0.9)
-@export var small_visual_scale: float = 0.7
 @export var small_wander_speed: float = 1.0
 @export var small_chase_speed: float = 1.6
 @export var small_wander_radius: float = 2.4
@@ -26,7 +25,6 @@ signal fish_bitten(fish: Fish)
 @export var medium_fish_respawn_time: float = 10.0
 @export var medium_fish_count: int = 4
 @export var medium_weight_range: Vector2 = Vector2(1.0, 2.4)
-@export var medium_visual_scale: float = 1.0
 @export var medium_wander_speed: float = 0.8
 @export var medium_chase_speed: float = 1.3
 @export var medium_wander_radius: float = 3.0
@@ -35,7 +33,6 @@ signal fish_bitten(fish: Fish)
 @export var large_fish_respawn_time: float = 15.0
 @export var large_fish_count: int = 2
 @export var large_weight_range: Vector2 = Vector2(2.5, 5.0)
-@export var large_visual_scale: float = 1.4
 @export var large_wander_speed: float = 0.55
 @export var large_chase_speed: float = 1.0
 @export var large_wander_radius: float = 3.8
@@ -113,7 +110,6 @@ func _spawn_fish_type(fish_type: StringName, count: int) -> void:
 		fish.configure(
 			fish_type,
 			rng.randf_range(weight_range.x, weight_range.y),
-			config["visual_scale"],
 			config["wander_speed"],
 			config["chase_speed"],
 			config["wander_radius"],
@@ -177,7 +173,6 @@ func _get_fish_config(fish_type: StringName) -> Dictionary:
 		&"small":
 			return {
 				"weight_range": small_weight_range,
-				"visual_scale": small_visual_scale,
 				"wander_speed": small_wander_speed,
 				"chase_speed": small_chase_speed,
 				"wander_radius": small_wander_radius,
@@ -186,7 +181,6 @@ func _get_fish_config(fish_type: StringName) -> Dictionary:
 		&"medium":
 			return {
 				"weight_range": medium_weight_range,
-				"visual_scale": medium_visual_scale,
 				"wander_speed": medium_wander_speed,
 				"chase_speed": medium_chase_speed,
 				"wander_radius": medium_wander_radius,
@@ -195,7 +189,6 @@ func _get_fish_config(fish_type: StringName) -> Dictionary:
 		&"large":
 			return {
 				"weight_range": large_weight_range,
-				"visual_scale": large_visual_scale,
 				"wander_speed": large_wander_speed,
 				"chase_speed": large_chase_speed,
 				"wander_radius": large_wander_radius,

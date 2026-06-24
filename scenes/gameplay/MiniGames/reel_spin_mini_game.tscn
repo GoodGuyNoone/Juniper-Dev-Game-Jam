@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bejdvgm08cn36"]
 
 [ext_resource type="Script" uid="uid://64s2eot637xd" path="res://scripts/gameplay/minigames/reel_spin_mini_game.gd" id="1_th37x"]
-[ext_resource type="Texture2D" uid="uid://dot242gandj73" path="res://import/Cat_01.png" id="2_6a0kt"]
+[ext_resource type="Texture2D" uid="uid://dot242gandj73" path="res://assets/icons/Cat_01.png" id="2_6a0kt"]
 [ext_resource type="Texture2D" uid="uid://6xwea4twt5s" path="res://assets/icons/Line.png" id="3_hkm5x"]
 [ext_resource type="Texture2D" uid="uid://bdn0fh08umm76" path="res://assets/icons/Fish.png" id="4_hxs7f"]
 

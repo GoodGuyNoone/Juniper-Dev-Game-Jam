@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxavslvqr74vm"]
+
+[ext_resource type="Texture2D" uid="uid://bm4n7ndh1e2t8" path="res://assets/texture/fishes/fishes_BaseColor.png" id="1_u33f6"]
+[ext_resource type="Texture2D" uid="uid://bg1qtldayyj4d" path="res://assets/texture/fishes/fishes_Roughness.png" id="2_ek0io"]
+
+[resource]
+albedo_texture = ExtResource("1_u33f6")
+roughness_texture = ExtResource("2_ek0io")

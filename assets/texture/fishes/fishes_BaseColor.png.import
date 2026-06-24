@@ -2,21 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brdtl6r0l0ccs"
-path.s3tc="res://.godot/imported/scene_DefaultMaterial_BaseColor.png-914e9c8f5f3611b6bc759eec0a7c6224.s3tc.ctex"
-path.etc2="res://.godot/imported/scene_DefaultMaterial_BaseColor.png-914e9c8f5f3611b6bc759eec0a7c6224.etc2.ctex"
+uid="uid://bm4n7ndh1e2t8"
+path.s3tc="res://.godot/imported/fishes_BaseColor.png-83871097c62c933f0b803feeea6a1af1.s3tc.ctex"
+path.etc2="res://.godot/imported/fishes_BaseColor.png-83871097c62c933f0b803feeea6a1af1.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "70b403fb5d1535adec8c91250a9a4996"
-}
 
 [deps]
 
-source_file="res://assets/models/scene_DefaultMaterial_BaseColor.png"
-dest_files=["res://.godot/imported/scene_DefaultMaterial_BaseColor.png-914e9c8f5f3611b6bc759eec0a7c6224.s3tc.ctex", "res://.godot/imported/scene_DefaultMaterial_BaseColor.png-914e9c8f5f3611b6bc759eec0a7c6224.etc2.ctex"]
+source_file="res://assets/texture/fishes/fishes_BaseColor.png"
+dest_files=["res://.godot/imported/fishes_BaseColor.png-83871097c62c933f0b803feeea6a1af1.s3tc.ctex", "res://.godot/imported/fishes_BaseColor.png-83871097c62c933f0b803feeea6a1af1.etc2.ctex"]
 
 [params]
 

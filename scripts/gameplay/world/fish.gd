@@ -13,10 +13,9 @@ enum State {
 @export var bite_distance: float = 0.35
 @export var wander_speed: float = 0.8
 @export var chase_speed: float = 1.4
-@export var turn_speed: float = 6.0
+@export var turn_speed: float = 3.0
 @export var fish_type: StringName = &"small"
 @export var weight: float = 0.5
-@export var visual_scale: float = 1.0
 @export var respawn_time: float = 5.0
 
 var state := State.WANDER
@@ -37,7 +36,7 @@ func _ready() -> void:
 
 
 func initialize_spawn() -> void:
-	_apply_visual_scale()
+	_apply_fish_visual()
 	home_position = global_position
 	_pick_wander_target()
 
@@ -57,7 +56,6 @@ func _process(delta: float) -> void:
 func configure(
 	new_fish_type: StringName,
 	new_weight: float,
-	new_visual_scale: float,
 	new_wander_speed: float,
 	new_chase_speed: float,
 	new_wander_radius: float,
@@ -65,11 +63,12 @@ func configure(
 ) -> void:
 	fish_type = new_fish_type
 	weight = new_weight
-	visual_scale = new_visual_scale
 	wander_speed = new_wander_speed
 	chase_speed = new_chase_speed
 	wander_radius = new_wander_radius
 	respawn_time = new_respawn_time
+
+	_apply_fish_visual()
 
 
 func interest_in_buoy(buoy: Node3D) -> void:
@@ -140,11 +139,15 @@ func release() -> void:
 	_pick_wander_target()
 
 
-func _apply_visual_scale() -> void:
+func _apply_fish_visual() -> void:
 	if visuals == null:
 		return
 
-	visuals.scale = Vector3.ONE * visual_scale
+	var active_visual_name := fish_type
+
+	for child in visuals.get_children():
+		if child is Node3D:
+			child.visible = child.name == active_visual_name
 
 
 func _bite() -> void:

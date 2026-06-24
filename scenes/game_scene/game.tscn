@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bysxy7nm52wfl" path="res://scripts/gameplay/controllers/score_board_controller.gd" id="11_lo7qv"]
 [ext_resource type="PackedScene" uid="uid://fh7dur8nac6g" path="res://scenes/gameplay/MiniGames/timing_bar_mini_game.tscn" id="11_tr8b4"]
 [ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
+[ext_resource type="PackedScene" uid="uid://6b723omkv515" path="res://scenes/gameplay/MiniGames/hook_reaction_mini_game.tscn" id="13_hook"]
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
 [ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
 [ext_resource type="PackedScene" uid="uid://chx64jwxnkslh" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
@@ -74,9 +75,10 @@ script = ExtResource("8_oxnsv")
 fish_scene = ExtResource("4_fhy3a")
 fish_container = NodePath("../../World/FishContainer")
 
-[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "timing_bar_mini_game", "reel_spin_mini_game")]
+[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "hook_reaction_mini_game", "timing_bar_mini_game", "reel_spin_mini_game")]
 script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
+hook_reaction_mini_game = NodePath("../../MiniGames/HookReactionMiniGame")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
 match_duration = 20.0
@@ -86,6 +88,9 @@ script = ExtResource("11_lo7qv")
 game_controller = NodePath("../GameController")
 
 [node name="MiniGames" type="Node" parent="." unique_id=2085452047]
+
+[node name="HookReactionMiniGame" parent="MiniGames" unique_id=1451272355 instance=ExtResource("13_hook")]
+visible = false
 
 [node name="TimingBarMiniGame" parent="MiniGames" unique_id=23738819 instance=ExtResource("11_tr8b4")]
 offset_left = 331.0

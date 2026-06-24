@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://6b723omkv515"]
+
+[ext_resource type="Script" uid="uid://1obqpwsfgald" path="res://scripts/gameplay/minigames/hook_reaction_mini_game.gd" id="1_hook"]
+
+[node name="HookReactionMiniGame" type="Control" unique_id=74082316]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hook")
+
+[node name="KeyLabel" type="Label" parent="." unique_id=1831456256]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="." unique_id=882416869]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 18.0
+offset_right = 24.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2.0"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -9,6 +9,7 @@ signal line_recovery_started(duration: float)
 signal line_recovery_finished
 
 @export var fish_coordinator: FishCoordinator
+@export var hook_reaction_mini_game: HookReactionMiniGame
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var reel_spin_mini_game: ReelSpinMiniGame
 @export var match_duration: float = 300.0
@@ -26,6 +27,9 @@ func _ready() -> void:
 		push_error("GameController has no FishCoordinator assigned.")
 	else:
 		fish_coordinator.fish_bitten.connect(_on_fish_bitten)
+
+	if hook_reaction_mini_game == null:
+		push_error("GameController has no HookReactionMiniGame assigned.")
 
 	call_deferred("_start_match")
 
@@ -53,6 +57,22 @@ func _on_fish_bitten(fish: Fish) -> void:
 	is_catching = true
 
 	print("Fish bitten: %s %.2f kg" % [fish.fish_type, fish.weight])
+
+	if hook_reaction_mini_game != null:
+		hook_reaction_mini_game.start()
+		var reaction_success: bool = await hook_reaction_mini_game.completed
+
+		if not is_match_running:
+			fish.release()
+			_end_catch()
+			return
+
+		if not reaction_success:
+			fish.release()
+			_start_line_recovery()
+			_end_catch()
+			return
+
 	timing_bar_mini_game.start()
 	var hook_success: bool = await timing_bar_mini_game.completed
 	print("Game ended: %s" % hook_success)
@@ -131,6 +151,8 @@ func _finish_match() -> void:
 	is_match_running = false
 	complete_line_recovery()
 	time_left = 0.0
+	if hook_reaction_mini_game != null:
+		hook_reaction_mini_game.cancel()
 	timing_bar_mini_game.cancel()
 	reel_spin_mini_game.cancel()
 	match_time_changed.emit(time_left)

@@ -14,5 +14,6 @@ unique_name_in_owner = true
 [node name="bobber2" parent="Visuals" unique_id=1893183839 instance=ExtResource("2_lx8cx")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="WaterSplash" parent="Visuals" unique_id=2107191938 instance=ExtResource("3_kwwvy")]
+[node name="WaterSplash" parent="." unique_id=2107191938 instance=ExtResource("3_kwwvy")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

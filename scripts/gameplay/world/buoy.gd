@@ -11,8 +11,8 @@ var is_casted: bool = false
 var _base_visuals_y := 0.0
 var _time_passed := 0.0
 
-@onready var visuals: Node3D = $Visuals
-@onready var water_splash: WaterSplashFeedback = $Visuals/WaterSplash
+@onready var visuals: Node3D = %Visuals
+@onready var water_splash: WaterSplashFeedback = %WaterSplash
 
 
 func _process(delta: float) -> void:

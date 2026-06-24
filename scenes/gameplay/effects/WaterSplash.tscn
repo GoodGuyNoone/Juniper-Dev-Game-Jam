@@ -54,8 +54,7 @@ script = ExtResource("1_splash_script")
 [node name="Splash" type="GPUParticles3D" parent="." unique_id=1098575445]
 unique_name_in_owner = true
 material_override = SubResource("ShaderMaterial_xerqv")
-amount = 1
-lifetime = 0.5
+amount = 4
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_r81qg")
 draw_pass_1 = SubResource("QuadMesh_3hlqi")

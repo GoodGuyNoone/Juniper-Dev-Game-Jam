@@ -8,17 +8,16 @@ enum Mode {
 }
 
 @export var water_y: float = 0.03
-@export var idle_amount: int = 1
-@export var bite_amount: int = 4
-@export var hooked_amount: int = 8
+@export var idle_ripple_amount: int = 2
+@export var bite_ripple_amount: int = 4
+@export var hooked_ripple_amount: int = 4
 @export var idle_lifetime: float = 0.8
 @export var bite_lifetime: float = 1.0
-@export var hooked_lifetime: float = 0.5
+@export var hooked_lifetime: float = 1.0
 
 var follow_target: Node3D = null
 
-
-@onready var splash: GPUParticles3D = %Splash
+@onready var ripple_particles: GPUParticles3D = %RippleParticles
 
 
 func _ready() -> void:
@@ -49,8 +48,9 @@ func stop() -> void:
 	hide()
 	set_process(false)
 
-	if splash != null:
-		splash.emitting = false
+	if ripple_particles != null:
+		ripple_particles.visible = false
+		ripple_particles.emitting = false
 
 
 func _process(_delta: float) -> void:
@@ -65,28 +65,28 @@ func _start(mode: int) -> void:
 	_apply_mode(mode)
 	show()
 
-	if splash != null:
-		splash.emitting = false
-		splash.restart()
-		splash.emitting = true
+	if ripple_particles != null:
+		ripple_particles.visible = true
+		ripple_particles.emitting = false
+		ripple_particles.restart()
+		ripple_particles.emitting = true
 
 
 func _apply_mode(mode: int) -> void:
-	if splash == null:
-		return
-
 	match mode:
 		Mode.IDLE:
-			splash.amount = idle_amount
-			splash.lifetime = idle_lifetime
+			_apply_particle_settings(idle_ripple_amount, idle_lifetime)
 		Mode.BITE:
-			splash.amount = bite_amount
-			splash.lifetime = bite_lifetime
+			_apply_particle_settings(bite_ripple_amount, bite_lifetime)
 		Mode.HOOKED:
-			splash.amount = hooked_amount
-			splash.lifetime = hooked_lifetime
+			_apply_particle_settings(hooked_ripple_amount, hooked_lifetime)
 
-	splash.one_shot = false
+
+func _apply_particle_settings( ripple_amount: int, particle_lifetime: float) -> void:
+	if ripple_particles != null:
+		ripple_particles.amount = ripple_amount
+		ripple_particles.lifetime = particle_lifetime
+		ripple_particles.one_shot = false
 
 
 func _update_follow_position() -> void:

@@ -1,60 +1,52 @@
 [gd_scene format=3 uid="uid://bax2vwv2s8wdx"]
 
-[ext_resource type="Shader" uid="uid://cwdkxojv07pm7" path="res://assets/shader/splash.gdshader" id="1_s354d"]
 [ext_resource type="Script" uid="uid://y0i7m3gh85ax" path="res://scripts/gameplay/world/water_splash_feedback.gd" id="1_splash_script"]
-[ext_resource type="Texture2D" uid="uid://cjmuq1qewatfq" path="res://assets/texture/splash/flare_01.png" id="2_7x08k"]
+[ext_resource type="Shader" uid="uid://bo8gybeu78gt0" path="res://assets/shader/water_ripple.gdshader" id="4_low5d"]
+[ext_resource type="Texture2D" uid="uid://bt3lqaudi05ue" path="res://assets/texture/splash/ripple.png" id="5_r81qg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xerqv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_low5d"]
 render_priority = 7
-shader = ExtResource("1_s354d")
-shader_parameter/mask_texture = ExtResource("2_7x08k")
-shader_parameter/edge_smoothness = 0.5
-shader_parameter/color_smoothness = 1.0
-shader_parameter/primary_color = Color(1, 1, 1, 1)
-shader_parameter/secondary_color = Color(1, 1, 1, 1)
-shader_parameter/billboard = false
-shader_parameter/proximity_fade = false
-shader_parameter/proximity_fade_distance = 1.0
-shader_parameter/alpha_mode = 0
+shader = ExtResource("4_low5d")
+shader_parameter/ripple_texture = ExtResource("5_r81qg")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/thickness = 0.08000000566
+shader_parameter/radius = 0.29600001406
+shader_parameter/feather = 0.10000000475
 
-[sub_resource type="Curve" id="Curve_t3b3e"]
-_data = [Vector2(0, 0.4044944), 0.0, -1.241029, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_ripple_alpha"]
+_data = [Vector2(0, 0), 0.0, 4.5, 0, 0, Vector2(0.18, 0.9), 0.0, 0.0, 0, 0, Vector2(0.72, 0.5), -1.2, -1.2, 0, 0, Vector2(1, 0), -2.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ripple_alpha"]
+curve = SubResource("Curve_ripple_alpha")
+
+[sub_resource type="Curve" id="Curve_ripple_scale"]
+_data = [Vector2(0, 0.08), 0.0, 0.0, 0, 0, Vector2(1, 1.4), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_s354d"]
-curve = SubResource("Curve_t3b3e")
+[sub_resource type="CurveTexture" id="CurveTexture_ripple_scale"]
+curve = SubResource("Curve_ripple_scale")
 
-[sub_resource type="Curve" id="Curve_7x08k"]
-_data = [Vector2(0, 0.50561804), 0.0, 1.8033711, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_low5d"]
-curve = SubResource("Curve_7x08k")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r81qg"]
-spread = 10.0
-initial_velocity_min = -0.099999994
-initial_velocity_max = 0.099999994
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ripple"]
+lifetime_randomness = 0.3
+angle_min = -180.0
+angle_max = 180.0
+spread = 0.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.59999996
-scale_max = 1.1
-scale_curve = SubResource("CurveTexture_low5d")
-color = Color(0, 0, 0, 1)
-alpha_curve = SubResource("CurveTexture_s354d")
+scale_min = 0.75
+scale_max = 1.25
+scale_curve = SubResource("CurveTexture_ripple_scale")
+alpha_curve = SubResource("CurveTexture_ripple_alpha")
 
-[sub_resource type="QuadMesh" id="QuadMesh_3hlqi"]
-size = Vector2(2, 2)
-subdivide_width = 32
-subdivide_depth = 32
-orientation = 1
+[sub_resource type="PlaneMesh" id="PlaneMesh_7x08k"]
 
 [node name="WaterSplash" type="Node3D" unique_id=2107191938]
 script = ExtResource("1_splash_script")
 
-[node name="Splash" type="GPUParticles3D" parent="." unique_id=1098575445]
+[node name="RippleParticles" type="GPUParticles3D" parent="." unique_id=1208067823]
 unique_name_in_owner = true
-material_override = SubResource("ShaderMaterial_xerqv")
+material_override = SubResource("ShaderMaterial_low5d")
 amount = 4
-explosiveness = 0.55
-process_material = SubResource("ParticleProcessMaterial_r81qg")
-draw_pass_1 = SubResource("QuadMesh_3hlqi")
+randomness = 0.45
+process_material = SubResource("ParticleProcessMaterial_ripple")
+draw_pass_1 = SubResource("PlaneMesh_7x08k")

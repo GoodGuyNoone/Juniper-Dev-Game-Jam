@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lc2wivq12xrv" path="res://scripts/gameplay/world/pool.gd" id="1_gwx2c"]
 [ext_resource type="Shader" uid="uid://qei4si84bkf2" path="res://assets/shader/water_compatible.gdshader" id="1_tp48n"]
+[ext_resource type="Texture2D" uid="uid://bo3sxevysl67h" path="res://assets/materials/caustics_texture_01.tres" id="3_jfwe5"]
 [ext_resource type="Texture2D" uid="uid://bffwejt33y51p" path="res://assets/models/scene_Plants_BaseColor-Alfa_palm.png" id="4_ew1xe"]
 [ext_resource type="PackedScene" uid="uid://g63oyhu1tbij" path="res://scenes/gameplay/world/cat.tscn" id="4_or3nf"]
 [ext_resource type="Material" uid="uid://calbjnkr2d40w" path="res://assets/materials/scene.tres" id="5_ew1xe"]
@@ -49,7 +50,8 @@ shader_parameter/foam_color = Color(0.79607844, 0.9529412, 0.9411765, 1)
 shader_parameter/depth_size = 4.005
 shader_parameter/surface_roughness = 0.05
 shader_parameter/foam_roughness = 0.05
-shader_parameter/caustics_strength = 2.0
+shader_parameter/caustics_texture = ExtResource("3_jfwe5")
+shader_parameter/caustics_strength = 2.5
 shader_parameter/caustics_scale = Vector2(0.5, 0.5)
 shader_parameter/wave_texture = SubResource("NoiseTexture2D_or3nf")
 shader_parameter/wave_normal_texture = SubResource("NoiseTexture2D_tp48n")
@@ -63,7 +65,7 @@ shader_parameter/wave_foam_amount = 0.499999988824
 shader_parameter/foam_start = 0.65
 shader_parameter/foam_end = 0.95000001415614
 shader_parameter/foam_exponent = 3.0
-shader_parameter/refraction_amount = 0.5
+shader_parameter/refraction_amount = 0.2
 shader_parameter/refraction_exponent = 0.5
 shader_parameter/displacement_amount = 0.3
 
@@ -4447,7 +4449,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.290527, 0, -12.777832)
 shape = SubResource("BoxShape3D_2lepi")
 
 [node name="Cat" parent="." unique_id=164410986 instance=ExtResource("4_or3nf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.053247213, 0.779407, 6.858407)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.053247213, 0.46675122, 6.858407)
 
 [node name="scene" type="Area3D" parent="." unique_id=392943725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46430397, 0)

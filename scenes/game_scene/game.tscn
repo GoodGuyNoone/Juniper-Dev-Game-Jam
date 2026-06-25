@@ -34,6 +34,7 @@ sky_material = SubResource("PanoramaSkyMaterial_mckcf")
 
 [sub_resource type="Environment" id="Environment_fhy3a"]
 background_mode = 2
+background_energy_multiplier = 0.6
 sky = SubResource("Sky_4iqd2")
 ambient_light_source = 3
 reflected_light_source = 2
@@ -48,13 +49,21 @@ environment = SubResource("Environment_fhy3a")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1074455563]
 transform = Transform3D(0.89485645, 0.18643878, 0.40555206, -0.44635406, 0.37377504, 0.81305623, 0, -0.90858847, 0.41769272, 0, 6.5442033, 0)
 light_color = Color(0.99326223, 0.96852785, 0.8655024, 1)
+light_energy = 0.8
+light_specular = 0.8
+shadow_enabled = true
 
 [node name="Pool" parent="World" unique_id=1582846410 instance=ExtResource("4_o347i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009529114, 0.012528896, -0.006331444)
 
-[node name="Camera3D" type="Camera3D" parent="World" unique_id=488783414]
+[node name="Camera3Dtest" type="Camera3D" parent="World" unique_id=488783414]
 transform = Transform3D(1, 0, 0, 0, 0.9063077, 0.42261824, 0, -0.42261824, 0.9063077, 0, 6.21, 13)
 fov = 40.0
+
+[node name="Camera3D" type="Camera3D" parent="World" unique_id=925876590]
+transform = Transform3D(1, 0, 0, 0, 0.93969256, 0.3420201, 0, -0.3420201, 0.93969256, 0.045, 6.2, 15.3)
+current = true
+fov = 30.0
 
 [node name="PlayerCursor" parent="World" unique_id=2048376276 instance=ExtResource("3_7ulqd")]
 
@@ -71,7 +80,7 @@ pause_menu_packed = ExtResource("2_pause_menu")
 [node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=1728235215 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator", "timing_bar_mini_game", "game_controller", "audio_controller")]
 script = ExtResource("6_wedpv")
 pool = NodePath("../../World/Pool")
-camera = NodePath("../../World/Camera3D")
+camera = NodePath("../../World/Camera3Dtest")
 player_cursor = NodePath("../../World/PlayerCursor")
 buoy_scene = ExtResource("7_wedpv")
 buoy_container = NodePath("../../World/BuoyContainer")

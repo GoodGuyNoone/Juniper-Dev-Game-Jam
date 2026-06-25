@@ -14,6 +14,7 @@ signal line_recovery_finished
 @export var reel_spin_mini_game: ReelSpinMiniGame
 @export var audio_controller: AudioController
 @export var player_fisher: PlayerFisher
+@export var game_hud: GameHUD
 @export var match_duration: float = 300.0
 @export var line_recovery_duration: float = 2.0
 
@@ -34,7 +35,14 @@ func _ready() -> void:
 	if hook_reaction_mini_game == null:
 		push_error("GameController has no HookReactionMiniGame assigned.")
 
-	call_deferred("_start_match")
+	call_deferred("_run_match_intro")
+
+
+func _run_match_intro() -> void:
+	if game_hud != null:
+		await game_hud.play_start_sequence()
+
+	start_match()
 
 
 func _process(delta: float) -> void:
@@ -182,7 +190,10 @@ func complete_line_recovery() -> void:
 	line_recovery_finished.emit()
 
 
-func _start_match() -> void:
+func start_match() -> void:
+	if is_match_running:
+		return
+
 	is_match_running = true
 	is_catching = false
 	is_recovering_line = false

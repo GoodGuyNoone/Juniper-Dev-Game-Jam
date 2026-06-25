@@ -38,6 +38,7 @@ background_energy_multiplier = 0.6
 sky = SubResource("Sky_4iqd2")
 ambient_light_source = 3
 reflected_light_source = 2
+glow_enabled = true
 
 [node name="Game" type="Node3D" unique_id=390675649]
 
@@ -59,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009529114, 0.012528896, -0
 [node name="Camera3Dtest" type="Camera3D" parent="World" unique_id=488783414]
 transform = Transform3D(1, 0, 0, 0, 0.9063077, 0.42261824, 0, -0.42261824, 0.9063077, 0, 6.21, 13)
 current = true
-fov = 40.0
+fov = 37.849285
 
 [node name="Camera3D" type="Camera3D" parent="World" unique_id=925876590]
 transform = Transform3D(1, 0, 0, 0, 0.93969256, 0.3420201, 0, -0.3420201, 0.93969256, 0.045, 6.2, 15.3)
@@ -96,7 +97,7 @@ fish_scene = ExtResource("4_fhy3a")
 fish_container = NodePath("../../World/FishContainer")
 audio_controller = NodePath("../AudioController")
 
-[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "hook_reaction_mini_game", "timing_bar_mini_game", "reel_spin_mini_game", "audio_controller", "player_fisher")]
+[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "hook_reaction_mini_game", "timing_bar_mini_game", "reel_spin_mini_game", "audio_controller", "player_fisher", "game_hud")]
 script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
 hook_reaction_mini_game = NodePath("../../MiniGames/HookReactionMiniGame")
@@ -104,6 +105,7 @@ timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
 audio_controller = NodePath("../AudioController")
 player_fisher = NodePath("../../World/Pool/Cat")
+game_hud = NodePath("../../CanvasLayer/GameHUD")
 
 [node name="AudioController" type="Node" parent="Controllers" unique_id=577880342]
 script = ExtResource("18_audio")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6q8tabh5rtg5"]
 
 [ext_resource type="Script" uid="uid://b1aua62ays32a" path="res://scripts/gameplay/UI/game_hud.gd" id="1_s5naw"]
+[ext_resource type="Texture2D" uid="uid://bjvhrrtj3p586" path="res://import/timer.png" id="2_r26up"]
 
 [node name="GameHUD" type="Control" unique_id=242013989]
 layout_mode = 3
@@ -12,6 +13,27 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_s5naw")
 
+[node name="CountdownLabel" type="Label" parent="." unique_id=883764291]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 96
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ScoreLabel" type="Label" parent="." unique_id=128389810]
 unique_name_in_owner = true
 layout_mode = 0
@@ -19,15 +41,28 @@ offset_left = 1080.0
 offset_top = 322.0
 offset_right = 1120.0
 offset_bottom = 378.0
-mouse_filter = 2
 text = "50 kg"
 
-[node name="TimerLabel" type="Label" parent="." unique_id=1734338164]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1914490111]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 50.0
+offset_right = -50.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=320714800]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("2_r26up")
+expand_mode = 4
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/TextureRect" unique_id=1734338164]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 645.0
-offset_top = 51.0
-offset_right = 685.0
-offset_bottom = 74.0
-mouse_filter = 2
+offset_left = 54.0
+offset_top = 66.0
+offset_right = 96.0
+offset_bottom = 89.0
 text = "05:00"

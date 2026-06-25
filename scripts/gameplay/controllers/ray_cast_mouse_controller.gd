@@ -9,6 +9,7 @@ extends Node
 @export var fish_coordinator: FishCoordinator
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var game_controller: GameController
+@export var audio_controller: AudioController
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null
@@ -61,7 +62,14 @@ func _try_cast() -> void:
 
 	var buoy := buoy_scene.instantiate() as Buoy
 	buoy_container.add_child(buoy)
+
+	if audio_controller != null:
+		audio_controller.play_cast_whoosh()
+
 	buoy.land_at(current_water_position)
+
+	if audio_controller != null:
+		audio_controller.play_buoy_splash_soft()
 
 	active_buoy = buoy
 

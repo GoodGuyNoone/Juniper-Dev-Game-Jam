@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bg1qtldayyj4d" path="res://assets/texture/fishes/fishes_Roughness.png" id="2_a0uco"]
 
 [resource]
-render_priority = 7
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
 albedo_texture = ExtResource("1_070cv")
 roughness_texture = ExtResource("2_a0uco")

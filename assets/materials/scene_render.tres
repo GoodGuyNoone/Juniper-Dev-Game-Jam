@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b8f7ilgu4l26d"]
+
+[ext_resource type="Texture2D" uid="uid://bffwejt33y51p" path="res://assets/models/scene_Plants_BaseColor-Alfa_palm.png" id="1_oq1js"]
+[ext_resource type="Texture2D" uid="uid://bg1qtldayyj4d" path="res://assets/texture/fishes/fishes_Roughness.png" id="2_jxrpk"]
+
+[resource]
+render_priority = 1
+transparency = 2
+alpha_scissor_threshold = 0.583
+alpha_antialiasing_mode = 0
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_oq1js")
+roughness_texture = ExtResource("2_jxrpk")

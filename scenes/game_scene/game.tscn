@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d16kwiy1o8vq"]
 
+[ext_resource type="Texture2D" uid="uid://dej61d78kfyyr" path="res://assets/texture/hdri/qwantani_noon_1k.hdr" id="1_a30n7"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://scripts/utilities/pause_menu_controller.gd" id="1_pause_controller"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_pause_menu"]
 [ext_resource type="PackedScene" uid="uid://bljo81scw8dkj" path="res://scenes/gameplay/world/player_cursor.tscn" id="3_7ulqd"]
-[ext_resource type="Texture2D" uid="uid://bclhy2rb5ypww" path="res://assets/texture/kloofendal_48d_partly_cloudy_puresky_1k.hdr" id="3_700et"]
 [ext_resource type="PackedScene" uid="uid://cegyvf8ttr7s6" path="res://scenes/gameplay/world/fish.tscn" id="4_fhy3a"]
 [ext_resource type="PackedScene" uid="uid://buqv6vkxbadfh" path="res://scenes/gameplay/world/pool.tscn" id="4_o347i"]
 [ext_resource type="Script" uid="uid://cxk8077hy27md" path="res://scripts/gameplay/controllers/ray_cast_mouse_controller.gd" id="6_wedpv"]
@@ -12,22 +12,29 @@
 [ext_resource type="Script" uid="uid://duo2mgjedbqhj" path="res://scripts/gameplay/controllers/game_controller.gd" id="10_lnrhe"]
 [ext_resource type="Script" uid="uid://bysxy7nm52wfl" path="res://scripts/gameplay/controllers/score_board_controller.gd" id="11_lo7qv"]
 [ext_resource type="PackedScene" uid="uid://fh7dur8nac6g" path="res://scenes/gameplay/MiniGames/timing_bar_mini_game.tscn" id="11_tr8b4"]
+[ext_resource type="AudioStream" uid="uid://bwlidcrutndyc" path="res://assets/audio/sfx/spinopel-fishing-rod-whoosh-411640.ogg" id="12_d37l8"]
 [ext_resource type="PackedScene" uid="uid://bejdvgm08cn36" path="res://scenes/gameplay/MiniGames/reel_spin_mini_game.tscn" id="12_vvut4"]
+[ext_resource type="AudioStream" uid="uid://52b1gb4p16gj" path="res://assets/audio/sfx/Splash.ogg" id="13_a30n7"]
 [ext_resource type="PackedScene" uid="uid://6b723omkv515" path="res://scenes/gameplay/MiniGames/hook_reaction_mini_game.tscn" id="13_hook"]
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
+[ext_resource type="AudioStream" uid="uid://c2q5n6q6f6ovf" path="res://assets/audio/sfx/fish_bite_splash.ogg" id="14_mckcf"]
+[ext_resource type="AudioStream" uid="uid://diicybakaacv0" path="res://assets/audio/sfx/reeling.ogg" id="15_4iqd2"]
+[ext_resource type="AudioStream" uid="uid://c86anpib0gpix" path="res://assets/audio/sfx/catch_success.ogg" id="15_a30n7"]
 [ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
 [ext_resource type="PackedScene" uid="uid://chx64jwxnkslh" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
 [ext_resource type="PackedScene" uid="uid://d08imi5newn1k" path="res://scenes/gameplay/UI/line_recovery_ui.tscn" id="17_3ivq0"]
+[ext_resource type="Script" uid="uid://cncimsm0goxji" path="res://scripts/gameplay/audio/audio_controller.gd" id="18_audio"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7ulqd"]
-panorama = ExtResource("3_700et")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mckcf"]
+panorama = ExtResource("1_a30n7")
+energy_multiplier = 2.0
 
-[sub_resource type="Sky" id="Sky_wedpv"]
-sky_material = SubResource("PanoramaSkyMaterial_7ulqd")
+[sub_resource type="Sky" id="Sky_4iqd2"]
+sky_material = SubResource("PanoramaSkyMaterial_mckcf")
 
 [sub_resource type="Environment" id="Environment_fhy3a"]
 background_mode = 2
-sky = SubResource("Sky_wedpv")
+sky = SubResource("Sky_4iqd2")
 ambient_light_source = 3
 reflected_light_source = 2
 
@@ -39,8 +46,8 @@ reflected_light_source = 2
 environment = SubResource("Environment_fhy3a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1074455563]
-transform = Transform3D(1, 0, 0, 0, -0.424247, 0.905547, 0, -0.905547, -0.424247, 0, 0, 0)
-light_color = Color(1, 1, 0.7019608, 1)
+transform = Transform3D(0.89485645, 0.18643878, 0.40555206, -0.44635406, 0.37377504, 0.81305623, 0, -0.90858847, 0.41769272, 0, 6.5442033, 0)
+light_color = Color(0.99326223, 0.96852785, 0.8655024, 1)
 
 [node name="Pool" parent="World" unique_id=1582846410 instance=ExtResource("4_o347i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009529114, 0.012528896, -0.006331444)
@@ -61,7 +68,7 @@ fov = 40.0
 script = ExtResource("1_pause_controller")
 pause_menu_packed = ExtResource("2_pause_menu")
 
-[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=1728235215 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator", "timing_bar_mini_game", "game_controller")]
+[node name="RayCastMouseController" type="Node" parent="Controllers" unique_id=1728235215 node_paths=PackedStringArray("pool", "camera", "player_cursor", "buoy_container", "fish_coordinator", "timing_bar_mini_game", "game_controller", "audio_controller")]
 script = ExtResource("6_wedpv")
 pool = NodePath("../../World/Pool")
 camera = NodePath("../../World/Camera3D")
@@ -71,18 +78,29 @@ buoy_container = NodePath("../../World/BuoyContainer")
 fish_coordinator = NodePath("../FishCoordinator")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 game_controller = NodePath("../GameController")
+audio_controller = NodePath("../AudioController")
 
-[node name="FishCoordinator" type="Node" parent="Controllers" unique_id=1641570867 node_paths=PackedStringArray("fish_container")]
+[node name="FishCoordinator" type="Node" parent="Controllers" unique_id=1641570867 node_paths=PackedStringArray("fish_container", "audio_controller")]
 script = ExtResource("8_oxnsv")
 fish_scene = ExtResource("4_fhy3a")
 fish_container = NodePath("../../World/FishContainer")
+audio_controller = NodePath("../AudioController")
 
-[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "hook_reaction_mini_game", "timing_bar_mini_game", "reel_spin_mini_game")]
+[node name="GameController" type="Node" parent="Controllers" unique_id=1537683898 node_paths=PackedStringArray("fish_coordinator", "hook_reaction_mini_game", "timing_bar_mini_game", "reel_spin_mini_game", "audio_controller")]
 script = ExtResource("10_lnrhe")
 fish_coordinator = NodePath("../FishCoordinator")
 hook_reaction_mini_game = NodePath("../../MiniGames/HookReactionMiniGame")
 timing_bar_mini_game = NodePath("../../MiniGames/TimingBarMiniGame")
 reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
+audio_controller = NodePath("../AudioController")
+
+[node name="AudioController" type="Node" parent="Controllers" unique_id=577880342]
+script = ExtResource("18_audio")
+cast_whoosh = ExtResource("12_d37l8")
+buoy_splash_soft = ExtResource("13_a30n7")
+fish_bite = ExtResource("14_mckcf")
+catch_success = ExtResource("15_a30n7")
+reel_tick_loop = ExtResource("15_4iqd2")
 
 [node name="ScoreBoardController" type="Node" parent="Controllers" unique_id=829880478 node_paths=PackedStringArray("game_controller")]
 script = ExtResource("11_lo7qv")
@@ -99,11 +117,12 @@ offset_top = 76.0
 offset_right = 431.0
 offset_bottom = 276.0
 
-[node name="ReelSpinMiniGame" parent="MiniGames" unique_id=1597237571 instance=ExtResource("12_vvut4")]
+[node name="ReelSpinMiniGame" parent="MiniGames" unique_id=1597237571 node_paths=PackedStringArray("audio_controller") instance=ExtResource("12_vvut4")]
 offset_left = 624.0
 offset_top = 545.0
 offset_right = 624.0
 offset_bottom = 545.0
+audio_controller = NodePath("../../Controllers/AudioController")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=660597012]
 
@@ -118,8 +137,9 @@ offset_right = 1236.0
 offset_bottom = 218.0
 score_board_controller = NodePath("../../../Controllers/ScoreBoardController")
 
-[node name="ResultsPanel" parent="CanvasLayer" unique_id=1610281501 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("16_7s0c3")]
+[node name="ResultsPanel" parent="CanvasLayer" unique_id=1610281501 node_paths=PackedStringArray("score_board_controller", "audio_controller") instance=ExtResource("16_7s0c3")]
 score_board_controller = NodePath("../../Controllers/ScoreBoardController")
+audio_controller = NodePath("../../Controllers/AudioController")
 
 [node name="LineRecoveryUI" parent="CanvasLayer" unique_id=2018679613 node_paths=PackedStringArray("game_controller") instance=ExtResource("17_3ivq0")]
 game_controller = NodePath("../../Controllers/GameController")

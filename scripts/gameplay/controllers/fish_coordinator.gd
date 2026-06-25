@@ -5,6 +5,7 @@ signal fish_bitten(fish: Fish)
 
 @export var fish_scene: PackedScene
 @export var fish_container: Node3D
+@export var audio_controller: AudioController
 
 @export_group("Spawn Area")
 @export var spawn_center: Vector3 = Vector3.ZERO
@@ -87,6 +88,9 @@ func send_fish_to_buoy(buoy: Buoy) -> Array[Fish]:
 		return []
 
 	interested_fish = interested_fish.slice(0, max_interested_fish)
+
+	if audio_controller != null:
+		audio_controller.play_fish_notice()
 
 	for fish in interested_fish:
 		fish.interest_in_buoy(buoy)

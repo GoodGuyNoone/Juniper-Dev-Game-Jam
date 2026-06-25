@@ -8,6 +8,7 @@ signal completed(success: bool)
 @export var spin_direction: float = 1.0
 @export var dead_zone_radius: float = 24.0
 @export var handle_grab_radius: float = 24.0
+@export var audio_controller: AudioController
 
 var is_running := false
 var is_dragging_handle := false
@@ -75,11 +76,15 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and _is_mouse_on_handle():
 			is_dragging_handle = true
 			has_previous_angle = false
+			if audio_controller != null:
+				audio_controller.start_reel_tick_loop()
 			handle_mouse_spin()
 			get_viewport().set_input_as_handled()
 		elif not event.pressed and is_dragging_handle:
 			is_dragging_handle = false
 			has_previous_angle = false
+			if audio_controller != null:
+				audio_controller.stop_reel_tick_loop()
 			get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseMotion and is_dragging_handle:
@@ -143,5 +148,7 @@ func _finish(success: bool) -> void:
 	is_running = false
 	is_dragging_handle = false
 	has_previous_angle = false
+	if audio_controller != null:
+		audio_controller.stop_reel_tick_loop()
 	hide()
 	completed.emit(success)

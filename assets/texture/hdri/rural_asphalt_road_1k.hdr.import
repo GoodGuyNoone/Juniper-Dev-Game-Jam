@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bclhy2rb5ypww"
-path.bptc="res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_1k.hdr-63b6704f119894ccbffdde1ccbbd6a12.bptc.ctex"
-path.astc="res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_1k.hdr-63b6704f119894ccbffdde1ccbbd6a12.astc.ctex"
+uid="uid://cgbglknvvdcx"
+path.bptc="res://.godot/imported/rural_asphalt_road_1k.hdr-ec6974af479b9bca2e89bff7dc692dbd.bptc.ctex"
+path.astc="res://.godot/imported/rural_asphalt_road_1k.hdr-ec6974af479b9bca2e89bff7dc692dbd.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/texture/kloofendal_48d_partly_cloudy_puresky_1k.hdr"
-dest_files=["res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_1k.hdr-63b6704f119894ccbffdde1ccbbd6a12.bptc.ctex", "res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_1k.hdr-63b6704f119894ccbffdde1ccbbd6a12.astc.ctex"]
+source_file="res://assets/texture/hdri/rural_asphalt_road_1k.hdr"
+dest_files=["res://.godot/imported/rural_asphalt_road_1k.hdr-ec6974af479b9bca2e89bff7dc692dbd.bptc.ctex", "res://.godot/imported/rural_asphalt_road_1k.hdr-ec6974af479b9bca2e89bff7dc692dbd.astc.ctex"]
 
 [params]
 

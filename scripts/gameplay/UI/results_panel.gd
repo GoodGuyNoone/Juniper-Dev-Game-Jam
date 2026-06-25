@@ -3,6 +3,7 @@ extends PanelContainer
 
 @export var score_board_controller: ScoreBoardController
 @export var row_scene: PackedScene
+@export var audio_controller: AudioController
 
 @onready var rows_container: VBoxContainer = %RowsContainer
 @onready var restart_button: Button = %RestartButton
@@ -50,8 +51,14 @@ func _clear_rows() -> void:
 
 
 func _on_restart_pressed() -> void:
+	if audio_controller != null:
+		audio_controller.play_button_click()
+
 	get_tree().reload_current_scene()
 
 
 func _on_menu_pressed() -> void:
+	if audio_controller != null:
+		audio_controller.play_button_click()
+
 	SceneLoader.load_scene(AppConfig.main_menu_scene_path)

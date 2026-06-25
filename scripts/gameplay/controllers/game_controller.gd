@@ -12,6 +12,7 @@ signal line_recovery_finished
 @export var hook_reaction_mini_game: HookReactionMiniGame
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var reel_spin_mini_game: ReelSpinMiniGame
+@export var audio_controller: AudioController
 @export var match_duration: float = 300.0
 @export var line_recovery_duration: float = 2.0
 
@@ -58,7 +59,9 @@ func _on_fish_bitten(fish: Fish) -> void:
 	is_catching = true
 	active_catch_buoy = fish.target_buoy as Buoy
 
-	print("Fish bitten: %s %.2f kg" % [fish.fish_type, fish.weight])
+	if audio_controller != null:
+		audio_controller.play_fish_bite()
+
 	_start_bite_splash()
 
 	if hook_reaction_mini_game != null:
@@ -71,16 +74,18 @@ func _on_fish_bitten(fish: Fish) -> void:
 			return
 
 		if not reaction_success:
+			_play_hook_fail()
 			fish.release()
 			_start_line_recovery()
 			_end_catch()
 			return
 
+		_play_hook_success()
+
 	_start_hooked_splash()
 
 	timing_bar_mini_game.start()
 	var hook_success: bool = await timing_bar_mini_game.completed
-	print("Game ended: %s" % hook_success)
 
 	if not is_match_running:
 		fish.release()
@@ -88,6 +93,7 @@ func _on_fish_bitten(fish: Fish) -> void:
 		return
 
 	if not hook_success:
+		_play_hook_fail()
 		fish.release()
 		_start_line_recovery()
 		_end_catch()
@@ -102,10 +108,14 @@ func _on_fish_bitten(fish: Fish) -> void:
 		return
 
 	if not reel_success:
+		_play_hook_fail()
 		fish.release()
 		_start_line_recovery()
 		_end_catch()
 		return
+
+	if audio_controller != null:
+		audio_controller.play_catch_success()
 
 	player_score += fish.weight
 	score_changed.emit(player_score)
@@ -149,6 +159,9 @@ func _start_line_recovery() -> void:
 		return
 
 	is_recovering_line = true
+	if audio_controller != null:
+		audio_controller.play_line_break()
+
 	line_recovery_started.emit(line_recovery_duration)
 
 
@@ -157,16 +170,22 @@ func complete_line_recovery() -> void:
 		return
 
 	is_recovering_line = false
+	if audio_controller != null and is_match_running:
+		audio_controller.play_line_repaired()
+
 	line_recovery_finished.emit()
 
 
 func _start_match() -> void:
-	print("match started")
 	is_match_running = true
 	is_catching = false
 	is_recovering_line = false
 	player_score = 0.0
 	time_left = match_duration
+
+	if audio_controller != null:
+		audio_controller.start_pond_ambience()
+		audio_controller.start_music()
 
 	score_changed.emit(player_score)
 	match_time_changed.emit(time_left)
@@ -180,9 +199,28 @@ func _finish_match() -> void:
 	complete_line_recovery()
 	time_left = 0.0
 	_stop_active_buoy_splash()
+	if audio_controller != null:
+		audio_controller.stop_reel_tick_loop()
+		audio_controller.stop_music()
+		audio_controller.play_match_end_whistle()
+
 	if hook_reaction_mini_game != null:
 		hook_reaction_mini_game.cancel()
 	timing_bar_mini_game.cancel()
 	reel_spin_mini_game.cancel()
 	match_time_changed.emit(time_left)
 	match_finished.emit()
+
+
+func _play_hook_success() -> void:
+	if audio_controller == null:
+		return
+
+	audio_controller.play_hook_success()
+
+
+func _play_hook_fail() -> void:
+	if audio_controller == null:
+		return
+
+	audio_controller.play_hook_fail()

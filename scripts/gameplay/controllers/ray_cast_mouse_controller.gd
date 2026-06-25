@@ -10,9 +10,12 @@ extends Node
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var game_controller: GameController
 @export var audio_controller: AudioController
+@export var player_fisher: PlayerFisher
+@export var cast_throw_delay: float = 2.0
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null
+var is_casting := false
 
 
 func _ready() -> void:
@@ -57,23 +60,44 @@ func _unhandled_input(event: InputEvent) -> void:
 func _try_cast() -> void:
 	if current_water_position == null:
 		return
+	if is_casting:
+		return
 	
+	var cast_position: Vector3 = current_water_position
+	is_casting = true
 	retrieve_active_buoy()
 
+	if player_fisher != null:
+		player_fisher.play_cast()
+
+	if cast_throw_delay > 0.0:
+		await get_tree().create_timer(cast_throw_delay).timeout
+
+	is_casting = false
+	if _is_water_input_blocked():
+		if player_fisher != null:
+			player_fisher.play_idle()
+		return
+
+	_throw_buoy(cast_position)
+
+
+func _throw_buoy(cast_position: Vector3) -> void:
 	var buoy := buoy_scene.instantiate() as Buoy
 	buoy_container.add_child(buoy)
 
 	if audio_controller != null:
 		audio_controller.play_cast_whoosh()
 
-	buoy.land_at(current_water_position)
+	buoy.land_at(cast_position)
 
 	if audio_controller != null:
 		audio_controller.play_buoy_splash_soft()
 
 	active_buoy = buoy
 
-	fish_coordinator.send_fish_to_buoy(buoy)
+	if fish_coordinator != null:
+		fish_coordinator.send_fish_to_buoy(buoy)
 
 
 func retrieve_active_buoy() -> void:
@@ -87,6 +111,9 @@ func retrieve_active_buoy() -> void:
 
 
 func _is_water_input_blocked() -> bool:
+	if is_casting:
+		return true
+
 	if game_controller == null:
 		return false
 

@@ -17,6 +17,11 @@ enum State {
 @export var fish_type: StringName = &"small"
 @export var weight: float = 0.5
 @export var respawn_time: float = 5.0
+@export_group("Swim Area")
+@export var swim_area_center: Vector3 = Vector3.ZERO
+@export var swim_area_size: Vector2 = Vector2(14.0, 14.0)
+@export var swim_y: float = -0.15
+@export var swim_edge_padding: float = 0.4
 
 var state := State.WANDER
 var home_position: Vector3
@@ -37,11 +42,14 @@ func _ready() -> void:
 
 func initialize_spawn() -> void:
 	_apply_fish_visual()
+	global_position = _get_swim_position(global_position)
 	home_position = global_position
 	_pick_wander_target()
 
 
 func _process(delta: float) -> void:
+	global_position = _get_swim_position(global_position)
+
 	match state:
 		State.WANDER:
 			_process_wander(delta)
@@ -59,7 +67,11 @@ func configure(
 	new_wander_speed: float,
 	new_chase_speed: float,
 	new_wander_radius: float,
-	new_respawn_time: float
+	new_respawn_time: float,
+	new_swim_area_center: Vector3 = Vector3.ZERO,
+	new_swim_area_size: Vector2 = Vector2(14.0, 14.0),
+	new_swim_y: float = -0.15,
+	new_swim_edge_padding: float = 0.4
 ) -> void:
 	fish_type = new_fish_type
 	weight = new_weight
@@ -67,6 +79,10 @@ func configure(
 	chase_speed = new_chase_speed
 	wander_radius = new_wander_radius
 	respawn_time = new_respawn_time
+	swim_area_center = new_swim_area_center
+	swim_area_size = new_swim_area_size
+	swim_y = new_swim_y
+	swim_edge_padding = new_swim_edge_padding
 
 	_apply_fish_visual()
 
@@ -82,13 +98,14 @@ func interest_in_buoy(buoy: Node3D) -> void:
 
 
 func _pick_wander_target() -> void:
+	var angle := rng.randf_range(0.0, TAU)
+	var distance := rng.randf_range(0.0, wander_radius)
 	var offset := Vector3(
-		rng.randf_range(-wander_radius, wander_radius),
+		cos(angle) * distance,
 		0.0,
-		rng.randf_range(-wander_radius, wander_radius),
+		sin(angle) * distance,
 	)
-	target_position = home_position + offset
-	target_position.y = global_position.y
+	target_position = _get_swim_position(home_position + offset)
 
 
 func _process_wander(delta: float) -> void:
@@ -103,11 +120,11 @@ func _process_interested(delta: float) -> void:
 		release()
 		return
 
-	var to_buoy := target_buoy.global_position - global_position
+	var bite_target := _get_swim_position(target_buoy.global_position)
+	var to_buoy := bite_target - global_position
 	to_buoy.y = 0
 
-	target_position = target_buoy.global_position
-	target_position.y = global_position.y
+	target_position = bite_target
 	_swim_toward(target_position, chase_speed, delta)
 
 	if to_buoy.length() <= bite_distance:
@@ -124,6 +141,7 @@ func _swim_toward(target: Vector3, speed: float, delta: float) -> void:
 	var direction := to_target.normalized()
 
 	global_position += direction * speed * delta
+	global_position = _get_swim_position(global_position)
 
 	var desired_basis := Basis.looking_at(direction, Vector3.UP)
 
@@ -154,3 +172,14 @@ func _bite() -> void:
 	interest_marker.visible = false
 	state = State.BITE
 	bitten.emit(self)
+
+
+func _get_swim_position(position: Vector3) -> Vector3:
+	var half_x := maxf(0.0, swim_area_size.x * 0.5 - swim_edge_padding)
+	var half_z := maxf(0.0, swim_area_size.y * 0.5 - swim_edge_padding)
+
+	return Vector3(
+		clampf(position.x, swim_area_center.x - half_x, swim_area_center.x + half_x),
+		swim_y,
+		clampf(position.z, swim_area_center.z - half_z, swim_area_center.z + half_z)
+	)

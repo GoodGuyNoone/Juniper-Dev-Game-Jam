@@ -13,6 +13,7 @@ signal line_recovery_finished
 @export var timing_bar_mini_game: TimingBarMiniGame
 @export var reel_spin_mini_game: ReelSpinMiniGame
 @export var audio_controller: AudioController
+@export var player_fisher: PlayerFisher
 @export var match_duration: float = 300.0
 @export var line_recovery_duration: float = 2.0
 
@@ -99,6 +100,9 @@ func _on_fish_bitten(fish: Fish) -> void:
 		_end_catch()
 		return
 
+	if player_fisher != null:
+		player_fisher.play_reel()
+
 	reel_spin_mini_game.start()
 	var reel_success: bool = await reel_spin_mini_game.completed
 
@@ -128,6 +132,8 @@ func _end_catch() -> void:
 	_stop_active_buoy_splash()
 	active_catch_buoy = null
 	is_catching = false
+	if player_fisher != null:
+		player_fisher.play_idle()
 	catch_finished.emit()
 
 
@@ -187,6 +193,9 @@ func _start_match() -> void:
 		audio_controller.start_pond_ambience()
 		audio_controller.start_music()
 
+	if player_fisher != null:
+		player_fisher.play_idle()
+
 	score_changed.emit(player_score)
 	match_time_changed.emit(time_left)
 
@@ -203,6 +212,9 @@ func _finish_match() -> void:
 		audio_controller.stop_reel_tick_loop()
 		audio_controller.stop_music()
 		audio_controller.play_match_end_whistle()
+
+	if player_fisher != null:
+		player_fisher.play_idle()
 
 	if hook_reaction_mini_game != null:
 		hook_reaction_mini_game.cancel()

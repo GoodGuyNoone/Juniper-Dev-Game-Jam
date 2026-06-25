@@ -11,6 +11,7 @@ signal fish_bitten(fish: Fish)
 @export var spawn_center: Vector3 = Vector3.ZERO
 @export var spawn_size: Vector2 = Vector2(14.0, 14.0)
 @export var spawn_y: float = -0.15
+@export var swim_edge_padding: float = 0.4
 @export var buoy_attraction_radius: float = 4.0
 @export var max_interested_fish: int = 3
 
@@ -117,7 +118,11 @@ func _spawn_fish_type(fish_type: StringName, count: int) -> void:
 			config["wander_speed"],
 			config["chase_speed"],
 			config["wander_radius"],
-			config["respawn_time"]
+			config["respawn_time"],
+			spawn_center,
+			spawn_size,
+			spawn_y,
+			swim_edge_padding
 		)
 
 		fish_container.add_child(fish)

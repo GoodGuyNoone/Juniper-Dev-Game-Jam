@@ -4443,6 +4443,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9360533)
 mesh = SubResource("PlaneMesh_nah82")
 
 [node name="CursorCollision" type="StaticBody3D" parent="." unique_id=563552908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23864189, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CursorCollision" unique_id=1642379704]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.290527, 0, -12.777832)

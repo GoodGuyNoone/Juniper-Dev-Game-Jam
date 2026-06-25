@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bljo81scw8dkj"]
+[gd_scene format=3 uid="uid://bljo81scw8dkj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x61n"]
-albedo_color = Color(1, 0.172549, 1, 1)
+[ext_resource type="Texture2D" uid="uid://dypyl4ldjqbqp" path="res://assets/icons/aimIcon.png" id="1_2bkaw"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3x61n"]
-material = SubResource("StandardMaterial3D_3x61n")
 size = Vector2(0.5, 0.5)
 
-[node name="PlayerCursor" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onyu8"]
+render_priority = 7
+transparency = 1
+albedo_color = Color(1, 0.14117648, 0.09019608, 1)
+albedo_texture = ExtResource("1_2bkaw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PlayerCursor" type="Node3D" unique_id=174978334]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=343639021]
 mesh = SubResource("PlaneMesh_3x61n")
+surface_material_override/0 = SubResource("StandardMaterial3D_onyu8")

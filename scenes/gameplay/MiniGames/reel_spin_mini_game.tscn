@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://64s2eot637xd" path="res://scripts/gameplay/minigames/reel_spin_mini_game.gd" id="1_th37x"]
 [ext_resource type="Texture2D" uid="uid://dot242gandj73" path="res://assets/icons/Cat_01.png" id="2_6a0kt"]
 [ext_resource type="Texture2D" uid="uid://6xwea4twt5s" path="res://assets/icons/Line.png" id="3_hkm5x"]
-[ext_resource type="Texture2D" uid="uid://bdn0fh08umm76" path="res://assets/icons/Fish.png" id="4_hxs7f"]
+[ext_resource type="Texture2D" uid="uid://bxgv2ii8fh3n3" path="res://assets/icons/FishSticker.png" id="4_6a0kt"]
+[ext_resource type="Texture2D" uid="uid://dhdf8vcbjqgae" path="res://assets/icons/Reel.png" id="5_hxs7f"]
+[ext_resource type="Texture2D" uid="uid://dvbuj28tvdb43" path="res://assets/icons/Handle.png" id="6_3d20a"]
 
 [node name="ReelSpinMiniGame" type="Control" unique_id=1597237571]
 layout_mode = 3
@@ -52,13 +54,15 @@ stretch_mode = 5
 
 [node name="FishSticker" type="TextureRect" parent="ProgressStrip" unique_id=2036967752]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_left = 338.0
-offset_top = 57.0
-offset_right = 466.0
-offset_bottom = 185.0
+offset_left = 368.0
+offset_top = 58.0
+offset_right = 496.0
+offset_bottom = 186.0
 mouse_filter = 2
-texture = ExtResource("4_hxs7f")
+texture = ExtResource("4_6a0kt")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="FishCaughtPosition" type="Control" parent="ProgressStrip" unique_id=1023530983]
@@ -82,38 +86,47 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ReelFace" type="ColorRect" parent="ReelRoot" unique_id=206768086]
+[node name="ReelFace" type="TextureRect" parent="ReelRoot" unique_id=997577959]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 35.0
-offset_bottom = 35.0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(35, 35)
-color = Color(0.8274504, 0.9393898, 0.36719698, 1)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("5_hxs7f")
+expand_mode = 1
 
 [node name="HandlePivot" type="Control" parent="ReelRoot" unique_id=1865918108]
 unique_name_in_owner = true
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="ReelHandle" type="ColorRect" parent="ReelRoot/HandlePivot" unique_id=1588207062]
+[node name="ReelHandle" type="TextureRect" parent="ReelRoot/HandlePivot" unique_id=1446660452]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 48.0
-offset_top = -8.0
-offset_right = 68.0
-offset_bottom = 8.0
+offset_left = -27.0
+offset_top = -37.0
+offset_right = 169.0
+offset_bottom = 40.0
 pivot_offset = Vector2(10, 8)
 mouse_filter = 2
-color = Color(0.28627452, 1, 1, 1)
+texture = ExtResource("6_3d20a")
+expand_mode = 1
+
+[node name="HandleGrabPoint" type="Control" parent="ReelRoot/HandlePivot" unique_id=23139342]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 134.0
+offset_right = 134.0
 
 [node name="TimerLabel" type="Label" parent="." unique_id=217170146]
 unique_name_in_owner = true

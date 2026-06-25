@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5thysd8mdw1"
-path.s3tc="res://.godot/imported/scene_Alfa_palm.png-e740b77ba073c5acfd957ca0a504c250.s3tc.ctex"
-path.etc2="res://.godot/imported/scene_Alfa_palm.png-e740b77ba073c5acfd957ca0a504c250.etc2.ctex"
+uid="uid://bffwejt33y51p"
+path.s3tc="res://.godot/imported/scene_Plants_BaseColor-Alfa_palm.png-d8f45b01964e485323ed7483f922f001.s3tc.ctex"
+path.etc2="res://.godot/imported/scene_Plants_BaseColor-Alfa_palm.png-d8f45b01964e485323ed7483f922f001.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "276fe861329d7541012d624e2d8e9fc0"
+"md5": "2a9fdd51f559b537486b33c825915308"
 }
 
 [deps]
 
-source_file="res://assets/models/scene_Alfa_palm.png"
-dest_files=["res://.godot/imported/scene_Alfa_palm.png-e740b77ba073c5acfd957ca0a504c250.s3tc.ctex", "res://.godot/imported/scene_Alfa_palm.png-e740b77ba073c5acfd957ca0a504c250.etc2.ctex"]
+source_file="res://assets/models/scene_Plants_BaseColor-Alfa_palm.png"
+dest_files=["res://.godot/imported/scene_Plants_BaseColor-Alfa_palm.png-d8f45b01964e485323ed7483f922f001.s3tc.ctex", "res://.godot/imported/scene_Plants_BaseColor-Alfa_palm.png-d8f45b01964e485323ed7483f922f001.etc2.ctex"]
 
 [params]
 

@@ -20,9 +20,9 @@ var _fish_end_x := 0.0
 var _rope_start_width := 0.0
 
 @onready var reel_root: Control = %ReelRoot
-@onready var reel_face: Control = %ReelFace
 @onready var handle_pivot: Control = %HandlePivot
 @onready var reel_handle: Control = %ReelHandle
+@onready var handle_grab_point: Control = %HandleGrabPoint
 @onready var rope_clip: Control = %RopeClip
 @onready var rope_texture: TextureRect = %RopeTexture
 @onready var fish_sticker: TextureRect = %FishSticker
@@ -114,13 +114,12 @@ func handle_mouse_spin() -> void:
 
 
 func _is_mouse_on_handle() -> bool:
-	var handle_center := reel_handle.get_global_rect().get_center()
-	return get_global_mouse_position().distance_to(handle_center) <= handle_grab_radius
+	var grab_center := handle_grab_point.get_global_rect().get_center()
+	return get_global_mouse_position().distance_to(grab_center) <= handle_grab_radius
 
 
 func _set_reel_angle(angle: float) -> void:
 	handle_pivot.rotation = angle
-	reel_face.rotation = angle
 
 
 func _cache_progress_layout() -> void:

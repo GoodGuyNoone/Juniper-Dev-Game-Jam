@@ -12,9 +12,9 @@ var time_left := 0.0
 var marker_direction = 1.0
 var rng = RandomNumberGenerator.new()
 
-@onready var bar: ColorRect = %Bar
-@onready var success_zone: ColorRect = %SuccessZone
-@onready var marker: ColorRect = %Marker
+@onready var bar: TextureRect = %Bar
+@onready var success_zone: TextureRect = %SuccessZone
+@onready var marker: TextureRect = %Marker
 @onready var timer_label: Label = %TimerLabel
 
 func _ready() -> void:

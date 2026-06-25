@@ -1,9 +1,23 @@
 [gd_scene format=3 uid="uid://conoq2gmylqvr"]
 
-[ext_resource type="PackedScene" path="res://scenes/menus/main_menu/base/main_menu.tscn" id="1_base"]
-[ext_resource type="PackedScene" path="res://scenes/windows/main_menu_options_window.tscn" id="2_options"]
-[ext_resource type="PackedScene" path="res://scenes/windows/main_menu_credits_window.tscn" id="3_credits"]
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://scenes/menus/main_menu/base/main_menu.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="2_options"]
+[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="3_credits"]
+[ext_resource type="Texture2D" uid="uid://v3wgxn7mvi4x" path="res://import/render2.png" id="4_peecx"]
 
-[node name="MainMenu" instance=ExtResource("1_base")]
+[node name="MainMenu" unique_id=1222557841 instance=ExtResource("1_base")]
 options_packed_scene = ExtResource("2_options")
 credits_packed_scene = ExtResource("3_credits")
+
+[node name="BackgroundTextureRect" parent="." index="0" unique_id=1940176448]
+texture = ExtResource("4_peecx")
+
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
+text = "Spin To Win"
+
+[node name="ExitConfirmation" parent="." index="3" unique_id=912502155]
+text = ""
+close_button_text = "Cancel"
+title = "Menu"
+title_font_size = 16
+title_visible = true

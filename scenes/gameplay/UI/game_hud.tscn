@@ -28,7 +28,6 @@ offset_right = 160.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_font_sizes/font_size = 96
 text = "3"
 horizontal_alignment = 1
@@ -43,7 +42,8 @@ offset_right = 1120.0
 offset_bottom = 378.0
 text = "50 kg"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1914490111]
+[node name="TimerPanel" type="MarginContainer" parent="." unique_id=1914490111]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -52,13 +52,14 @@ offset_top = 50.0
 offset_right = -50.0
 grow_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=320714800]
+[node name="Timer" type="TextureRect" parent="TimerPanel" unique_id=320714800]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture = ExtResource("2_r26up")
 expand_mode = 4
 
-[node name="TimerLabel" type="Label" parent="MarginContainer/TextureRect" unique_id=1734338164]
+[node name="TimerLabel" type="Label" parent="TimerPanel/Timer" unique_id=1734338164]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 54.0

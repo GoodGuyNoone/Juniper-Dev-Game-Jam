@@ -9,8 +9,8 @@ extends Control
 @onready var timer_label: Label = %TimerLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var countdown_label: Label = %CountdownLabel
-@onready var timer_panel: Control = timer_label.get_parent().get_parent() as Control
-@onready var scoreboard_panel: Control = get_node_or_null("ScoreBoardPanel") as Control
+@onready var timer_panel: Control = %TimerPanel as Control
+@onready var scoreboard_panel: Control = %ScoreBoardPanel as Control
 
 var timer_final_position := Vector2.ZERO
 var scoreboard_final_position := Vector2.ZERO

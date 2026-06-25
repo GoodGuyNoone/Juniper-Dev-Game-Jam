@@ -4384,36 +4384,36 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3qga6")
 
-[sub_resource type="Resource" id="Resource_gmaaw"]
+[sub_resource type="Resource" id="Resource_d6b0n"]
 script = ExtResource("10_tubfk")
 amount = 1500
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_hn5s3"]
+[sub_resource type="Resource" id="Resource_ha4xv"]
 script = ExtResource("11_d6b0n")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_cf4vg"]
+[sub_resource type="Resource" id="Resource_t4uhb"]
 script = ExtResource("12_ha4xv")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_8rnks"]
+[sub_resource type="Resource" id="Resource_fvg4i"]
 script = ExtResource("13_t4uhb")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 collision_mask = 0
 
-[sub_resource type="Resource" id="Resource_6jh1o"]
+[sub_resource type="Resource" id="Resource_lnpac"]
 script = ExtResource("8_jfwe5")
-stack = Array[ExtResource("9_5lka8")]([SubResource("Resource_gmaaw"), SubResource("Resource_hn5s3"), SubResource("Resource_cf4vg"), SubResource("Resource_8rnks")])
+stack = Array[ExtResource("9_5lka8")]([SubResource("Resource_d6b0n"), SubResource("Resource_ha4xv"), SubResource("Resource_t4uhb"), SubResource("Resource_fvg4i")])
 
 [sub_resource type="Resource" id="Resource_do3ai"]
 script = ExtResource("16_smxsx")
@@ -4788,6 +4788,12 @@ material_override = ExtResource("5_ew1xe")
 mesh = SubResource("ArrayMesh_d8wb1")
 skeleton = NodePath("")
 
+[node name="Rock2" type="MeshInstance3D" parent="scene/Rocks" unique_id=277032098]
+transform = Transform3D(1.7214129, 0, -1.018203, 0, 2, 0, 1.018203, 0, 1.7214129, 14.531187, 0.6215515, -16.329353)
+material_override = ExtResource("5_ew1xe")
+mesh = SubResource("ArrayMesh_d8wb1")
+skeleton = NodePath("")
+
 [node name="Bush" type="Node3D" parent="scene" unique_id=1389797854]
 
 [node name="Bush_075" type="MeshInstance3D" parent="scene/Bush" unique_id=551244982]
@@ -4821,7 +4827,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("6_nah82")
 
 [node name="Bush_068" type="MeshInstance3D" parent="scene/Bush" unique_id=210626321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.783841, 0.23720884, 8.2487135)
+transform = Transform3D(-0.5898448, 0, -0.8075166, 0, 1, 0, 0.8075166, 0, -0.5898448, 13.388072, 0.6488762, -13.719598)
 mesh = SubResource("ArrayMesh_ywbtd")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("6_nah82")
@@ -5226,7 +5232,7 @@ surface_material_override/0 = ExtResource("5_ew1xe")
 
 [node name="ProtonScatter" type="Node3D" parent="scene" unique_id=1749330075]
 script = ExtResource("7_do3ai")
-modifier_stack = SubResource("Resource_6jh1o")
+modifier_stack = SubResource("Resource_lnpac")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://f5432flcillf"

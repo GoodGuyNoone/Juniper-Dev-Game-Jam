@@ -59,11 +59,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009529114, 0.012528896, -0
 
 [node name="Camera3Dtest" type="Camera3D" parent="World" unique_id=488783414]
 transform = Transform3D(1, 0, 0, 0, 0.9063077, 0.42261824, 0, -0.42261824, 0.9063077, 0, 6.21, 13)
-current = true
 fov = 37.849285
 
 [node name="Camera3D" type="Camera3D" parent="World" unique_id=925876590]
 transform = Transform3D(1, 0, 0, 0, 0.93969256, 0.3420201, 0, -0.3420201, 0.93969256, 0.045, 6.2, 15.3)
+current = true
 fov = 30.0
 
 [node name="PlayerCursor" parent="World" unique_id=2048376276 instance=ExtResource("3_7ulqd")]
@@ -143,6 +143,7 @@ audio_controller = NodePath("../../Controllers/AudioController")
 game_controller = NodePath("../../Controllers/GameController")
 
 [node name="ScoreBoardPanel" parent="CanvasLayer/GameHUD" unique_id=1045653095 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("15_xpges")]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1016.0
 offset_top = 88.0

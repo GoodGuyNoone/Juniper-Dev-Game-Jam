@@ -60,6 +60,7 @@ expand_mode = 1
 
 [node name="SuccessZone" type="TextureRect" parent="Panel/MiniGameRoot" unique_id=1191090661]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(81, 100)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,6 +79,7 @@ expand_mode = 1
 
 [node name="Marker" type="TextureRect" parent="Panel/MiniGameRoot" unique_id=1594927040]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(119, 95)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

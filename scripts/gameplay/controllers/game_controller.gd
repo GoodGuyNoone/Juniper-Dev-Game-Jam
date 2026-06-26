@@ -17,12 +17,14 @@ signal line_recovery_finished
 @export var game_hud: GameHUD
 @export var match_duration: float = 300.0
 @export var line_recovery_duration: float = 2.0
+@export_range(0, 10, 1) var match_end_tick_seconds: int = 3
 
 var is_catching := false
 var is_match_running := false
 var is_recovering_line := false
 var player_score := 0.0
 var time_left := 0.0
+var next_match_end_tick_second := 0
 var active_catch_buoy: Buoy = null
 
 
@@ -51,6 +53,7 @@ func _process(delta: float) -> void:
 
 	time_left = maxf(0.0, time_left - delta)
 	match_time_changed.emit(time_left)
+	_play_match_end_countdown_tick()
 
 	if time_left <= 0.0:
 		_finish_match()
@@ -199,6 +202,7 @@ func start_match() -> void:
 	is_recovering_line = false
 	player_score = 0.0
 	time_left = match_duration
+	next_match_end_tick_second = mini(match_end_tick_seconds, ceili(match_duration))
 
 	if audio_controller != null:
 		audio_controller.start_pond_ambience()
@@ -209,6 +213,20 @@ func start_match() -> void:
 
 	score_changed.emit(player_score)
 	match_time_changed.emit(time_left)
+
+
+func _play_match_end_countdown_tick() -> void:
+	if audio_controller == null:
+		return
+	if next_match_end_tick_second <= 0:
+		return
+	if time_left <= 0.0:
+		return
+	if time_left > float(next_match_end_tick_second):
+		return
+
+	audio_controller.play_countdown_tick()
+	next_match_end_tick_second -= 1
 
 
 func _finish_match() -> void:

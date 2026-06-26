@@ -15,10 +15,10 @@ script = ExtResource("1_th37x")
 [node name="ProgressStrip" type="Control" parent="." unique_id=946046221]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -260.0
-offset_top = -240.0
-offset_right = 260.0
-offset_bottom = -160.0
+offset_left = -235.0
+offset_top = -404.0
+offset_right = 285.0
+offset_bottom = -324.0
 mouse_filter = 2
 
 [node name="RopeClip" type="Control" parent="ProgressStrip" unique_id=596986007]

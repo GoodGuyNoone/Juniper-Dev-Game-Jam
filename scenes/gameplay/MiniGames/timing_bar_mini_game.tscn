@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://fh7dur8nac6g"]
 
 [ext_resource type="Script" uid="uid://bctjuqd0yxn2i" path="res://scripts/gameplay/minigames/timing_bar_mini_game.gd" id="1_4ovap"]
-[ext_resource type="Texture2D" uid="uid://c7xbjcvu8c0nh" path="res://import/pendulum.png" id="2_yx784"]
-[ext_resource type="Texture2D" uid="uid://sn50wurujo6f" path="res://import/area.png" id="3_3cjpw"]
-[ext_resource type="Texture2D" uid="uid://dhsfchhk0j5jp" path="res://import/arrow.png" id="4_7iuc0"]
+[ext_resource type="Texture2D" uid="uid://c7xbjcvu8c0nh" path="res://assets/texture/minigames/timing_bar/pendulum.png" id="2_yx784"]
+[ext_resource type="Texture2D" uid="uid://bgh8wcjwnvq0g" path="res://assets/icons/area.png" id="3_yx784"]
+[ext_resource type="Texture2D" uid="uid://dhsfchhk0j5jp" path="res://assets/texture/minigames/timing_bar/arrow.png" id="4_7iuc0"]
 
 [node name="TimingBarMiniGame" type="Control" unique_id=179567758]
 custom_minimum_size = Vector2(100, 200)
@@ -60,26 +60,26 @@ expand_mode = 1
 
 [node name="SuccessZone" type="TextureRect" parent="Panel/MiniGameRoot" unique_id=1191090661]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(81, 100)
+custom_minimum_size = Vector2(20.25, 25)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -11.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_3cjpw")
-expand_mode = 1
+texture = ExtResource("3_yx784")
+expand_mode = 4
 
 [node name="Marker" type="TextureRect" parent="Panel/MiniGameRoot" unique_id=1594927040]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(119, 95)
+custom_minimum_size = Vector2(29.75, 23.75)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

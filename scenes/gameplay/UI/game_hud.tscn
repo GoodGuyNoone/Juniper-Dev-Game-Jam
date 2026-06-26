@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6q8tabh5rtg5"]
 
 [ext_resource type="Script" uid="uid://b1aua62ays32a" path="res://scripts/gameplay/UI/game_hud.gd" id="1_s5naw"]
-[ext_resource type="Texture2D" uid="uid://bjvhrrtj3p586" path="res://import/timer.png" id="2_r26up"]
+[ext_resource type="Texture2D" uid="uid://bjvhrrtj3p586" path="res://assets/icons/timer.png" id="2_r26up"]
 
 [node name="GameHUD" type="Control" unique_id=242013989]
 layout_mode = 3
@@ -35,6 +35,7 @@ vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=128389810]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 1080.0
 offset_top = 322.0
@@ -66,4 +67,3 @@ offset_left = 54.0
 offset_top = 66.0
 offset_right = 96.0
 offset_bottom = 89.0
-text = "05:00"

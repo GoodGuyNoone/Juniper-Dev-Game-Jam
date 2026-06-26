@@ -15,6 +15,7 @@ signal game_exited
 ## The scene to open when a player clicks the 'Credits' button.
 @export var credits_packed_scene : PackedScene
 @export var confirm_exit : bool = true
+@export var audio_controller : AudioController
 @export_group("Extra Settings")
 ## If true, signals that the game has started loading in the background, instead of directly loading it.
 @export var signal_game_start : bool = false
@@ -30,6 +31,31 @@ var sub_menu : Control
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
 @onready var exit_confirmation = %ExitConfirmation
+
+func _get_audio_controller() -> AudioController:
+	if audio_controller == null:
+		audio_controller = get_node_or_null("AudioController") as AudioController
+	return audio_controller
+
+func _play_button_sound() -> void:
+	var controller := _get_audio_controller()
+	if controller != null:
+		controller.play_button_click()
+
+func _connect_button_sounds(root: Node) -> void:
+	if root == null:
+		return
+	if not root.child_entered_tree.is_connected(_on_menu_child_entered_tree):
+		root.child_entered_tree.connect(_on_menu_child_entered_tree)
+	if root is BaseButton:
+		var button := root as BaseButton
+		if not button.button_down.is_connected(_play_button_sound):
+			button.button_down.connect(_play_button_sound)
+	for child in root.get_children():
+		_connect_button_sounds(child)
+
+func _on_menu_child_entered_tree(child: Node) -> void:
+	_connect_button_sounds(child)
 
 func get_game_scene_path() -> String:
 	if game_scene_path.is_empty():
@@ -69,6 +95,7 @@ func exit_game() -> void:
 func _open_sub_menu(menu : PackedScene) -> Node:
 	sub_menu = menu.instantiate()
 	add_child(sub_menu)
+	_connect_button_sounds(sub_menu)
 	menu_container.hide()
 	sub_menu.hidden.connect(_close_sub_menu, CONNECT_ONE_SHOT)
 	sub_menu.tree_exiting.connect(_close_sub_menu, CONNECT_ONE_SHOT)
@@ -116,6 +143,10 @@ func _ready() -> void:
 	_hide_options_if_unset()
 	_hide_credits_if_unset()
 	_hide_new_game_if_unset()
+	_connect_button_sounds(self)
+	var controller := _get_audio_controller()
+	if controller != null:
+		controller.start_music()
 
 func _on_new_game_button_pressed() -> void:
 	new_game()

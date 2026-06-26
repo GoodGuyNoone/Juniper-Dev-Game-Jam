@@ -2,8 +2,9 @@ class_name GameHUD
 extends Control
 
 @export var game_controller: GameController
+@export var audio_controller: AudioController
 @export var countdown_steps: PackedStringArray = ["3", "2", "1", "GO"]
-@export var countdown_step_duration: float = 0.75
+@export var countdown_step_duration: float = 1
 @export var hud_slide_duration: float = 0.45
 
 @onready var timer_label: Label = %TimerLabel
@@ -59,6 +60,7 @@ func _play_countdown() -> void:
 		return
 
 	countdown_label.visible = true
+	audio_controller.play_countdown_go()
 
 	for countdown_text in countdown_steps:
 		countdown_label.text = countdown_text

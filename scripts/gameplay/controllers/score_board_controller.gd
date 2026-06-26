@@ -35,7 +35,7 @@ func _create_standings() -> void:
 	standings.clear()
 
 	standings.append({
-		"name": "Player",
+		"name": AppConfig.get_player_name(),
 		"score": 0.0,
 		"is_player": true
 	})

@@ -115,6 +115,7 @@ reel_spin_mini_game = NodePath("../../MiniGames/ReelSpinMiniGame")
 audio_controller = NodePath("../AudioController")
 player_fisher = NodePath("../../World/Pool/Cat")
 game_hud = NodePath("../../CanvasLayer/GameHUD")
+match_duration = 120.0
 
 [node name="AudioController" type="Node" parent="Controllers" unique_id=577880342]
 script = ExtResource("18_audio")
@@ -157,16 +158,17 @@ audio_controller = NodePath("../../Controllers/AudioController")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=660597012]
 
-[node name="GameHUD" parent="CanvasLayer" unique_id=242013989 node_paths=PackedStringArray("game_controller") instance=ExtResource("13_vvut4")]
+[node name="GameHUD" parent="CanvasLayer" unique_id=242013989 node_paths=PackedStringArray("game_controller", "audio_controller") instance=ExtResource("13_vvut4")]
 game_controller = NodePath("../../Controllers/GameController")
+audio_controller = NodePath("../../Controllers/AudioController")
 
 [node name="ScoreBoardPanel" parent="CanvasLayer/GameHUD" unique_id=1045653095 node_paths=PackedStringArray("score_board_controller") instance=ExtResource("15_xpges")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 88.0
-offset_right = 1236.0
-offset_bottom = 218.0
+offset_left = 1006.0
+offset_top = 259.0
+offset_right = 1226.0
+offset_bottom = 389.0
 score_board_controller = NodePath("../../../Controllers/ScoreBoardController")
 
 [node name="ResultsPanel" parent="CanvasLayer" unique_id=1610281501 node_paths=PackedStringArray("score_board_controller", "audio_controller") instance=ExtResource("16_7s0c3")]

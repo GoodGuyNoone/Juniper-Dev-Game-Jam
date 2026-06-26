@@ -11,7 +11,7 @@ extends Node
 @export var game_controller: GameController
 @export var audio_controller: AudioController
 @export var player_fisher: PlayerFisher
-@export var cast_throw_delay: float = 1.0
+@export var cast_throw_delay: float = 0.0
 
 var current_water_position: Variant = null
 var active_buoy: Buoy = null

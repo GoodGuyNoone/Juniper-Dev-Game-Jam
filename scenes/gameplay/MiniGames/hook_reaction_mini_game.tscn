@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6b723omkv515"]
 
 [ext_resource type="Script" uid="uid://1obqpwsfgald" path="res://scripts/gameplay/minigames/hook_reaction_mini_game.gd" id="1_hook"]
+[ext_resource type="Texture2D" uid="uid://bvelbky2cbwth" path="res://assets/icons/pecks.png" id="2_h2y77"]
 
 [node name="HookReactionMiniGame" type="Control" unique_id=74082316]
 custom_minimum_size = Vector2(128, 128)
@@ -19,6 +20,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hook")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=545812380]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -45.0
+offset_right = 24.75
+offset_bottom = 44.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h2y77")
+expand_mode = 1
+
 [node name="KeyLabel" type="Label" parent="." unique_id=1831456256]
 unique_name_in_owner = true
 layout_mode = 1
@@ -28,9 +45,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -24.0
-offset_top = -24.0
+offset_top = 60.0
 offset_right = 24.0
-offset_bottom = 12.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "E"
@@ -46,9 +63,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -24.0
-offset_top = 18.0
+offset_top = 81.0
 offset_right = 24.0
-offset_bottom = 44.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "2.0"

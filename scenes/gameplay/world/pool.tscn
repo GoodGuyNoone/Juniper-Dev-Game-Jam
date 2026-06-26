@@ -5232,6 +5232,7 @@ surface_material_override/0 = ExtResource("5_ew1xe")
 
 [node name="ProtonScatter" type="Node3D" parent="scene" unique_id=1749330075]
 script = ExtResource("7_do3ai")
+render_mode = 1
 modifier_stack = SubResource("Resource_lnpac")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)

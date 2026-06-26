@@ -17,8 +17,14 @@ audio_controller = NodePath("AudioController")
 [node name="BackgroundTextureRect" parent="." index="0" unique_id=1940176448]
 texture = ExtResource("4_peecx")
 
+[node name="TitleMargin" parent="MenuContainer" parent_id_path=PackedInt32Array(396616752) index="0" unique_id=2112060331]
+visible = false
+
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
 text = "Spin To Win"
+
+[node name="SubTitleMargin" parent="MenuContainer" parent_id_path=PackedInt32Array(396616752) index="1" unique_id=1510335937]
+visible = false
 
 [node name="ExitConfirmation" parent="." index="3" unique_id=912502155]
 text = ""

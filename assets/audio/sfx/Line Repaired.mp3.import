@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cirmyjnu8y17n"
+path="res://.godot/imported/Line Repaired.mp3-376e4548c4b6ae936211805eeb8ad000.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Line Repaired.mp3"
+dest_files=["res://.godot/imported/Line Repaired.mp3-376e4548c4b6ae936211805eeb8ad000.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -19,11 +19,20 @@
 [ext_resource type="PackedScene" uid="uid://c6q8tabh5rtg5" path="res://scenes/gameplay/UI/game_hud.tscn" id="13_vvut4"]
 [ext_resource type="AudioStream" uid="uid://c2q5n6q6f6ovf" path="res://assets/audio/sfx/fish_bite_splash.ogg" id="14_mckcf"]
 [ext_resource type="AudioStream" uid="uid://diicybakaacv0" path="res://assets/audio/sfx/reeling.ogg" id="15_4iqd2"]
+[ext_resource type="AudioStream" uid="uid://ejyxhbki80qj" path="res://assets/audio/sfx/Hook Fail.mp3" id="15_a15uk"]
 [ext_resource type="AudioStream" uid="uid://c86anpib0gpix" path="res://assets/audio/sfx/catch_success.ogg" id="15_a30n7"]
 [ext_resource type="PackedScene" uid="uid://c0pjhfjdsy3l1" path="res://scenes/gameplay/UI/score_board_panel.tscn" id="15_xpges"]
 [ext_resource type="PackedScene" uid="uid://chx64jwxnkslh" path="res://scenes/gameplay/UI/results_panel.tscn" id="16_7s0c3"]
 [ext_resource type="PackedScene" uid="uid://d08imi5newn1k" path="res://scenes/gameplay/UI/line_recovery_ui.tscn" id="17_3ivq0"]
+[ext_resource type="AudioStream" uid="uid://cnh1crcelhq8n" path="res://assets/audio/sfx/Line Break.mp3" id="17_ppn7m"]
 [ext_resource type="Script" uid="uid://cncimsm0goxji" path="res://scripts/gameplay/audio/audio_controller.gd" id="18_audio"]
+[ext_resource type="AudioStream" uid="uid://cirmyjnu8y17n" path="res://assets/audio/sfx/Line Repaired.mp3" id="18_s5s8b"]
+[ext_resource type="AudioStream" uid="uid://dyoxibi8dbhsl" path="res://assets/audio/sfx/Countdown Tick.mp3" id="19_gog74"]
+[ext_resource type="AudioStream" uid="uid://cijegyyutx657" path="res://assets/audio/sfx/Countdown Go.mp3" id="20_tfsby"]
+[ext_resource type="AudioStream" uid="uid://ckm2ds5d5knyc" path="res://assets/audio/sfx/Match End Whistle001.mp3" id="21_b6lro"]
+[ext_resource type="AudioStream" uid="uid://b7rbqx6u11jxg" path="res://assets/audio/sfx/Button Click001.mp3" id="23_67ry1"]
+[ext_resource type="AudioStream" uid="uid://cwka7rff7aml1" path="res://assets/audio/sfx/Music Loop.mp3" id="24_6p5cc"]
+[ext_resource type="AudioStream" uid="uid://ul0nbgkxmjlv" path="res://assets/audio/sfx/Pond Ambience Loop.mp3" id="24_ppn7m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mckcf"]
 panorama = ExtResource("1_a30n7")
@@ -112,8 +121,17 @@ script = ExtResource("18_audio")
 cast_whoosh = ExtResource("12_d37l8")
 buoy_splash_soft = ExtResource("13_a30n7")
 fish_bite = ExtResource("14_mckcf")
+hook_fail = ExtResource("15_a15uk")
 catch_success = ExtResource("15_a30n7")
+line_break = ExtResource("17_ppn7m")
+line_repaired = ExtResource("18_s5s8b")
+countdown_tick = ExtResource("19_gog74")
+countdown_go = ExtResource("20_tfsby")
+match_end_whistle = ExtResource("21_b6lro")
+button_click = ExtResource("23_67ry1")
 reel_tick_loop = ExtResource("15_4iqd2")
+pond_ambience_loop = ExtResource("24_ppn7m")
+music_loop = ExtResource("24_6p5cc")
 
 [node name="ScoreBoardController" type="Node" parent="Controllers" unique_id=829880478 node_paths=PackedStringArray("game_controller")]
 script = ExtResource("11_lo7qv")
